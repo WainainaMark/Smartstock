@@ -1,5 +1,5 @@
 # SmartStock
-This is the repository for SmartStock - A dynamic retail stock managament App
+This is the repository for SmartStock - A dynamic retail stock management App
 
 # What is SmartStock?
 SmartStock is the a new revolution for retail shop owners!
@@ -13,6 +13,8 @@ Using your available codespace, with python and django installed
 after installation run
 
 `py manage.py runserver`
+or
+`python3 manage.py runserver`
 
 on the Terminal a port will open, most probably with **8000**
 
@@ -21,3 +23,5 @@ on the Terminal a port will open, most probably with **8000**
 >Django version 5.1.6, using settings 'smartstock.settings'  
 >Starting development server at http://127.0.0.1:8000/  
 >Quit the server with CTRL-BREAK.
+
+Ctrl+click the url, and use the app
