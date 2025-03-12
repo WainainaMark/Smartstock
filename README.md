@@ -1,3 +1,5 @@
+Click here to explore SmartStock
+# > [EXPLORE SMARTSTOCK](https://smartstock-uapd.onrender.com)
 # SmartStock
 This is the repository for SmartStock - A dynamic retail stock management App
 
@@ -6,10 +8,7 @@ SmartStock is the a new revolution for retail shop owners!
 No more hassle of writing data down, remembering your last order! All that is taken care of with your new SmartStock app
 
 ## How to run?  
-Click the link below and experience SmartStock with predefined values  
-[Run SmartStock!](https://bookish-waddle-57wgxvv55q5cvv5q-8000.app.github.dev)
-
-###For Tech Savvy Users!!  
+### For Tech Savvy Users!!  
 Using your available codespace, with python and django installed
 
 `pip install django`
@@ -29,3 +28,6 @@ on the Terminal a port will open, most probably with **8000**
 >Quit the server with CTRL-BREAK.
 
 Ctrl+click the url, and use the app
+
+All proposed changes will be reviewed, 
+# PLEASE DONT PUSH TO MAIN, CREATE YOUR OWN BRANCH THANKS
