@@ -23,7 +23,7 @@ def signIn(request):
             auth_login(request, user)
             user.save()
             # messages.success(request, "Account created successfully! Kindly login on the next window")
-            return redirect('/login')
+            return redirect('/home')
     else:
         form = UserForm()
     return render(request, 'user/signin.html', {'form': form})
