@@ -1,0 +1,89 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+    <title>frontend</title>
+
+    <!-- Link to Custom CSS -->
+    <link rel="stylesheet" href="{% static 'frontend/styles.css' %}" />
+  </head>
+  <body>
+    <loader id="loader">
+
+    </loader>
+    <section>
+      <div id="sectionContainer">
+        <div class="Title">
+          <div id="content">
+            <span id="heading">SmartStock</span>
+            <div id="search">
+              <input type="name" placeholder="search" id="searchInput" />
+              <img
+                src="{% static 'frontend/images/searchIcon.svg' %}"
+                alt="Search Icon"
+                id="searchIcon"
+              />
+            </div>
+          </div>
+          <div id="headerLinks">
+            <span class="text linkText">
+              <img
+                src="{% static 'frontend/images/homeIcon.svg' %}"
+                alt="home Icon"
+                id="homeIcon"
+              />
+              Dashboard
+            </span>
+            <span class="text linkText pageLinkActive" >
+              <img
+                src="{% static 'frontend/images/chartIcon.svg' %}"
+                alt="Chart Icon"
+                id="chartIcon"
+              />
+              Analytics
+            </span>
+            <span class="text linkText">
+              <img
+                src="{% static 'frontend/images/pieChartIcon.svg' %}"
+                alt="pieChart Icon"
+                id="pieChartIcon"
+              />Admin
+            </span>
+            <!-- v1.2 relocated the links to the header section -->
+          </div>
+          <div id="profile">
+            <div id="notif">
+              <img
+                src="{% static 'frontend/images/bellIcon.svg' %}"
+                alt="Bell Icon"
+                id="bellIcon"
+              />
+              <span id="notificationText">Notifications</span>
+            </div>
+            <span id="profileDetails">Vendor</span>
+            <img
+              src="{% static 'frontend/images/profileIcon.svg' %}"
+              alt="Profile Icon"
+              id="profileIcon"
+            />
+          </div>
+        </div>
+
+        <div id="homeContent">
+          <div id="homeContainer">
+            {% block content %}
+            {% endblock %}
+            
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <script src="{% static 'frontend/script.js' %}"></script>
+  </body>
+</html>

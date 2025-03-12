@@ -1,0 +1,63 @@
+{%load static%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SmartStock</title>
+    <link rel="stylesheet" href="{% static 'user/style.css' %}">
+</head>
+<body>
+    {% if messages %}
+    <div id="feedbackContainer">
+      <div id="feedback">
+        <div id="feedbackType">
+          {% if success %}
+          <div class="feedbackType" id="green"></div>
+          {% endif %}
+          {% if warning %}
+          <div class="feedbackType" id="yellow"></div>
+          {% endif %}
+          {% if error %}
+          <div class="feedbackType" id="red"></div>
+          {% endif %}
+        </div>
+        <div class="feedBackTitleContainer">
+          {% if success %}
+          <span id="errorTextTitle"> SUCCESS! </span>
+          {% endif %}
+          {% if warning %}
+          <span id="errorTextTitle"> WARNING! </span>
+          {% endif %}
+          {% if error %}
+          <span id="errorTextTitle"> ERROR! </span>
+          {% endif %}
+        </div>
+        <div class="errorDescription">
+          <span id="errorDescriptionText"> 
+            <div class="errorMessage">
+              {% for message in messages %}
+              {{ message }}
+              {% endfor %}
+            </div>
+          </span>
+        </div>
+        <button id="feedBackButton">OK</button>
+      </div>
+    </div>
+    {% endif %}
+    <section>
+        <div id="loginContainer">
+
+            {%block content%}
+            {%endblock%}
+        </div>
+    </section>
+
+    <footer>
+        By Signin In you agree to our <a href="{% url 'terms' %}">Terms and Condition</a> and our <a href="{% url 'privacy' %}">Privacy Policy</a>
+    </footer>
+    <script src="{% static 'user/jquery-3.7.1.min.js' %}"></script>
+    <script src="{% static 'user/animation.js' %}"></script>
+</body>
+</html>

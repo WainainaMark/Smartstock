@@ -1,0 +1,19 @@
+{% extends 'user/base.html' %}
+
+{% block title %}Login{% endblock %}
+
+{% block content %}
+<span class="text">Welcome Back!!</span>
+<span>Kindly Login Below</span>
+<form method="post">
+    {%csrf_token%}
+    <input type="text" name="username" id="username" placeholder="Username" required>
+    <input type="password" name="password" id="password" placeholder="Password" required>
+    
+    <a href="{% url 'forgot' %}" id="frgtPwd">Forgot Password?</a>
+
+    <button type="submit">Login</button>
+    
+
+</form>
+{% endblock %}

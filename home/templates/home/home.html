@@ -1,0 +1,654 @@
+{% load static %} {% load humanize %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+    <title>Home</title>
+    <link rel="stylesheet" href="{% static 'home/styles.css' %}" />
+  </head>
+  <body>
+    <loader id="loader"> </loader>
+    {% if messages %}
+    <div id="feedbackContainer">
+      <div id="feedback">
+        <div id="feedbackType">
+          {% if success %}
+          <div class="feedbackType" id="green"></div>
+          {% endif %} {% if warning %}
+          <div class="feedbackType" id="yellow"></div>
+          {% endif %} {% if error %}
+          <div class="feedbackType" id="red"></div>
+          {% endif %}
+        </div>
+        <div class="feedBackTitleContainer">
+          {% if success %}
+          <span id="errorTextTitle"> SUCCESS! </span>
+          {% endif %} {% if warning %}
+          <span id="errorTextTitle"> WARNING! </span>
+          {% endif %} {% if error %}
+          <span id="errorTextTitle"> ERROR! </span>
+          {% endif %}
+        </div>
+        <div class="errorDescription">
+          <span id="errorDescriptionText">
+            <div class="errorMessage">
+              {% for message in messages %} {{ message }} {% endfor %}
+            </div>
+            <div class="errorDetails">
+              <span>Selected Product: {{ product_name }}</span>
+              <span>Remaining Stock: {{ remaining_stock }}</span>
+            </div>
+          </span>
+        </div>
+        <button id="feedBackButton">OK</button>
+      </div>
+    </div>
+    {% endif %}
+    <div id="productAddContainer">
+      <form
+        id="productAddForm"
+        class="toggled"
+        method="post"
+        enctype="multipart/form-data"
+      >
+        <input type="hidden" name="form_type" value="addProductForm" />
+        {% csrf_token %}
+        <div id="productAddHeader">
+          <span class="productAddText" id="frontText">
+            Add Product to SmartStock</span
+          >
+          <span class="productAddText" id="behindText">
+            Add Product to SmartStock</span
+          >
+          <span class="closeIcon" id="productAddCloseIcon">
+            <img
+              src="{% static 'home/images/closeIcon.svg' %}"
+              alt="close Icon"
+              id="closeIcon2a"
+            />
+          </span>
+        </div>
+
+        <div id="productAddInputContainer">
+          <div id="productProfileDetails">
+            <div id="productProfileDetailsChild">
+              <div class="productAddInputParent">
+                <span>The name of the product</span>
+                <input
+                  type="text"
+                  class="productAddInput"
+                  id="productAddName"
+                  name="productAddName"
+                />
+              </div>
+              <div id="productSecondaryDetails">
+                <div class="productAddInputParent">
+                  <span>Product Photo</span>
+                  <input
+                    type="file"
+                    id="productPhoto"
+                    name="productPhoto"
+                    hidden
+                  />
+                  <label
+                    for="productPhoto"
+                    id="productPhotoChoice"
+                    class="productAddInput"
+                    ><img
+                      src="{% static 'home/images/imageIcon.svg' %}"
+                      id="productPhotoIcon"
+                    />
+                    Choose File</label
+                  >
+                </div>
+                <div class="productAddInputParent">
+                  <span>Product Units</span>
+                  <select
+                    type="text"
+                    class="productAddInput"
+                    id="productUnit"
+                    name="productUnit"
+                  >
+                    {% for unit in units %}
+                    <option class="productCategoryOptions">
+                      {{ unit.unit_of_measurement}}
+                    </option>
+                    {% endfor %}
+                  </select>
+                </div>
+              </div>
+            </div>
+            <div class="productAddInputParent">
+              <span>A brief description of the product</span>
+              <input
+                type="text"
+                class="productAddInput"
+                id="productDescription"
+                name="productDescription"
+              />
+            </div>
+          </div>
+
+          <div id="productFinancialDetail">
+            <div class="productAddInputParent">
+              <span>Category</span>
+              <select
+                type="text"
+                class="productAddInput"
+                id="productCategory"
+                name="productCategory"
+              >
+                {% for category in categories %}
+                <option class="productCategoryOptions">
+                  {{ category.category_name}}
+                </option>
+                {% endfor %}
+              </select>
+            </div>
+            <div class="productAddInputParent">
+              <span>Cost Price</span>
+              <input
+                type="text"
+                class="productAddInput"
+                id="productCost"
+                name="productCost"
+              />
+            </div>
+            <div class="productAddInputParent">
+              <span>Selling Price</span>
+              <input
+                type="text"
+                class="productAddInput"
+                id="productCreationPrice"
+                name="productCreationPrice"
+              />
+            </div>
+            <div class="productAddInputParent">
+              <span>Stock Amount</span>
+              <input
+                type="text"
+                class="productAddInput"
+                id="productInitialQuantity"
+                name="productInitialQuantity"
+              />
+            </div>
+          </div>
+
+          <div id="productReport">
+            <span id="reportTitle">PRODUCTS IN STOCK</span>
+            <div class="stock-table">
+              <table>
+                <thead>
+                  <tr>
+                    <th id="photoRow">Photo</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                    <th>Category</th>
+                    <th class="price">Price (Ksh)</th>
+                    <th class="price">Quantity</th>
+                  </tr>
+                </thead>
+                <tbody id="stockList">
+                  {% for product in products %}
+                  <tr>
+                    <td>
+                      <img
+                        src="{% if product.product_photo %}{{ product.product_photo.url }}{% else %}/media/uploads/productPhoto/productDefaultImage.svg{% endif %}"
+                        class="productLogoImage"
+                      />
+                    </td>
+                    <td>{{ product.product_name }}</td>
+                    <td>{{ product.product_description }}</td>
+                    <td>{{ product.category_id.category_name }}</td>
+                    <td class="price">{{ product.product_price }}</td>
+                    <td class="price">
+                      {{ stocks }} {{ product.unit_id.unit_of_measurement}}
+                    </td>
+                  </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <button id="productAddButton" type="submit">Add Product</button>
+        </div>
+      </form>
+    </div>
+    <section>
+      <div id="sectionContainer">
+        <div class="Title">
+          <div id="content">
+            <!-- <img
+              src="{% static 'home/images/menuIcon.svg' %}"
+              alt="Menu Icon"
+              id="menuIcon"
+              onclick="toggleSidebar()"
+            /> -->
+            <!-- V1.0 feature, removed menu icon -->
+            <span id="heading">SmartStock</span>
+            <div id="search">
+              <input type="name" placeholder="search" id="searchInput" />
+              <img
+                src="{% static 'home/images/searchIcon.svg' %}"
+                alt="Search Icon"
+                id="searchIcon"
+              />
+            </div>
+          </div>
+          <div id="headerLinks">
+            <span class="text linkText pageLinkActive">
+              <img
+                src="{% static 'home/images/homeIcon.svg' %}"
+                alt="home Icon"
+                id="homeIcon"
+              />
+              <span class="headerText">Dashboard</span>
+            </span>
+            <span class="text linkText">
+              <img
+                src="{% static 'home/images/chartIcon.svg' %}"
+                alt="Chart Icon"
+                id="chartIcon"
+              />
+              <span class="headerText">Analytics</span>
+            </span>
+            <span class="text linkText">
+              <img
+                src="{% static 'home/images/pieChartIcon.svg' %}"
+                alt="pieChart Icon"
+                id="pieChartIcon"
+              />
+              <span class="headerText">AI</span>
+            </span>
+            <!-- v1.2 relocated the links to the header section -->
+          </div>
+          <div id="profile">
+            <div id="notif">
+              <img
+                src="{% static 'home/images/bellIcon.svg' %}"
+                alt="Bell Icon"
+                id="bellIcon"
+              />
+              <span id="notificationText">Notifications</span>
+            </div>
+            <span id="profileDetails">{{ user }}</span>
+            <img
+              src="{% static 'home/images/profileIcon.svg' %}"
+              alt="Profile Icon"
+              id="profileIcon"
+            />
+          </div>
+        </div>
+
+        <div id="homeContent">
+          <div id="homeContainer">
+            <div id="report">
+              <div id="fullDataContainer">
+                <div id="fullData"></div>
+              </div>
+              <div class="box reportBox">
+                <span class="text boxTitle"> Total Sales </span>
+                <div id="salesContainer">
+                  <span class="text reportText" id="salesAmount"
+                    >Ksh {{ total_sales_today|intcomma }}</span
+                  >
+                  <span id="clock" class="text reportText"> </span>
+                </div>
+                <div class="dynamicData">
+                  <div class="analysis">
+                    {% for day, results in daily_results.items %}
+                    <div class="analytic">
+                      {{ results.sales_total }}
+                    </div>
+                    {% endfor %}
+                  </div>
+                  <div class="days">
+                    <span class="day">Mon</span>
+                    <span class="day">Tues</span>
+                    <span class="day">Wed</span>
+                    <span class="day">Thur</span>
+                    <span class="day">Fri</span>
+                    <span class="day">Sat</span>
+                    <span class="day">Sun</span>
+                  </div>
+                </div>
+              </div>
+              <div class="box reportBox">
+                <span class="text boxTitle">Total Orders</span>
+                <span class="text reportText" id="orderAmount"
+                  >Ksh {{ total_order_today|intcomma }}</span
+                >
+                <div class="dynamicData">
+                  <div class="analysis">
+                    {% for day, results in daily_results.items %}
+                    <div class="analytic">
+                      {{ results.orders_total }}
+                    </div>
+                    {% endfor %}
+                  </div>
+                  <div class="days">
+                    <span class="day">Mon</span>
+                    <span class="day">Tues</span>
+                    <span class="day">Wed</span>
+                    <span class="day">Thur</span>
+                    <span class="day">Fri</span>
+                    <span class="day">Sat</span>
+                    <span class="day">Sun</span>
+                  </div>
+                </div>
+              </div>
+              <div class="box reportBox">
+                <span class="text boxTitle">Total Stock</span>
+                <span class="text reportText" id="productAmount">
+                  {{ total_product|intcomma }}</span
+                >
+                <div class="dynamicData">
+                  <div class="analysis">
+                    <div class="analytic"></div>
+                    <div class="analytic"></div>
+                    <div class="analytic"></div>
+                    <div class="analytic"></div>
+                    <div class="analytic"></div>
+                    <div class="analytic"></div>
+                    <div class="analytic"></div>
+                  </div>
+                  <div class="days">
+                    <span class="day">Mon</span>
+                    <span class="day">Tues</span>
+                    <span class="day">Wed</span>
+                    <span class="day">Thur</span>
+                    <span class="day">Fri</span>
+                    <span class="day">Sat</span>
+                    <span class="day">Sun</span>
+                  </div>
+                </div>
+              </div>
+              <div class="box reportBox">
+                <span class="text boxTitle">Total Profit</span>
+                {% if total_profit < 0 %}
+                <span class="text reportText red" id="profitAmount"
+                  >Ksh {{ total_profit|intcomma }}</span
+                >
+                {% else %}
+                <span class="text reportText green" id="profitAmount"
+                  >Ksh {{ total_profit|intcomma }}</span
+                >
+                {% endif %}
+                <div class="dynamicData">
+                  <div class="analysis">
+                    {% for day, results in daily_results.items %}
+                    <div class="analytic">
+                      {{ results.profit }}
+                    </div>
+                    {% endfor %}
+                  </div>
+                  <div class="days">
+                    <span class="day">Mon</span>
+                    <span class="day">Tues</span>
+                    <span class="day">Wed</span>
+                    <span class="day">Thur</span>
+                    <span class="day">Fri</span>
+                    <span class="day">Sat</span>
+                    <span class="day">Sun</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div id="features">
+              <div id="featuresContainer">
+                <div id="sightBoxes">
+                  <div class="userBoxes">
+                    <span class="text"> AI Recommendations</span>
+                  </div>
+                  <div class="userBoxes" id="transactionContainer">
+                    <span class="text"> Transactions </span>
+                    <div id="transactions">
+                      <table>
+                        <thead>
+                          <tr>
+                            <th></th>
+                            <th>Transaction Type</th>
+                            <th>Transaction Details</th>
+                            <th>Transaction Amount</th>
+                          </tr>
+                        </thead>
+                        <tbody id="stockList">
+                          {% for transaction in transactions %}
+                          <tr>
+                            <td></td>
+                            <td>{{ transaction.transaction_type }}</td>
+                            <td class="transactionDetails">
+                              <span>{{ transaction.transaction_receipt_id }}</span>
+                              <span>{{transaction.transaction_date|time:"h:iA"}}</span>
+                            </td>
+                            <td>Ksh. 
+                              {% if transaction.transaction_type == "SALE"%}
+                              <span class="green">
+                                {{ transaction.transaction_amount|intcomma }}
+                              </span>
+                              {% else %}
+                              <span class="red">{{ transaction.transaction_amount|intcomma}}</span>
+                              {% endif %}
+                            </td>
+                          </tr>
+                          {% endfor %}
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+                <div id="userActions">
+                  <div class="userActionBoxes" id="orderBox">
+                    <div class="actionBoxTitle" id="informativeTitle1">
+                      <span class="text"> Orders/Add Stock</span>
+                      <span class="closeIcon">
+                        <img
+                          src="{% static 'home/images/closeIcon.svg' %}"
+                          alt="close Icon"
+                          id="closeIcon"
+                        />
+                      </span>
+                      <!-- When ordering or adding stock you require the Product name, Product description, Product Quantity, Product Wholesale Price -A page for suppliers- , Product Cost for selling, Product amount  -->
+                    </div>
+                    <div class="actionBoxTitle inform" id="displayTitle1">
+                      <span class="text"> Make a New Order or Add Stock </span>
+                    </div>
+                    <div id="userActionChoice">
+                      <div id="activeChoice"></div>
+                      <div class="userChoices" id="choice1">
+                        <span>Orders</span>
+                      </div>
+                      <div class="userChoices" id="choice2">
+                        <span>Add Stock</span>
+                      </div>
+                    </div>
+                    <div id="formContainer">
+                      <form id="orderForm" method="post">
+                        {% csrf_token %}
+                        <input
+                          type="hidden"
+                          name="formToken"
+                          value="{{formToken}}"
+                        />
+                        <input
+                          type="hidden"
+                          name="form_type"
+                          value="orderForm"
+                        />
+                        <select
+                          name="productOrderName"
+                          class="userActionForm"
+                          id="productOrderName"
+                        >
+                          <option disabled selected>Choose A product</option>
+                          {% for product in products %}
+                          <option>{{ product.product_name }}</option>
+                          {% endfor %}
+                          <option class="addProductToggle">
+                            Add a product
+                          </option>
+                        </select>
+                        <div id="productQuantityCollective">
+                          <input
+                            type="text"
+                            placeholder="How much to order?"
+                            name="productOrderQuantity"
+                            class="userActionForm"
+                            id="productOrderQuantity"
+                          />
+                          <div id="productQuantityDynamic"></div>
+                        </div>
+                        <select name="supplierName" class="userActionForm">
+                          <option disabled selected>Choose A supplier</option>
+                          {% for supplier in suppliers %}
+                          <option>{{ supplier.supplier_name }}</option>
+                          {% endfor %}
+                        </select>
+                        <!-- Send Email to supplier for ORDER -->
+                        <input
+                          type="text"
+                          placeholder="How much buying per piece?"
+                          name="productCreationPrice"
+                          class="userActionForm"
+                        />
+                        <div id="orderExpectedDateContainer">
+                          <span>When is the order arriving?</span>
+                          <input
+                            type="date"
+                            placeholder="When to expect order?"
+                            name="orderExpectedDate"
+                            class="userActionForm"
+                            aria-placeholder="When is it arriving"
+                          />
+                        </div>
+                        <button id="orderButton" type="submit">Order</button>
+                      </form>
+                      <form id="stockForm" method="post">
+                        {% csrf_token %}
+                        <input
+                          type="hidden"
+                          name="formToken"
+                          value="{{formToken}}"
+                        />
+                        <input type="hidden" name="form_type" value="stockForm">
+                        <select
+                          name="productStockName"
+                          class="userActionForm"
+                          id="productStockName"
+                        >
+                          <option disabled selected>Choose A product</option>
+                          {% for product in products %}
+                          <option>{{ product.product_name }}</option>
+                          {% endfor %}
+                          <option class="addProductToggle">
+                            Add a product
+                          </option>
+                        </select>
+                        <p>
+                          Current stock:
+                          <span id="productInfo">
+                            
+                          </span>
+                        </p>
+                        <input
+                          type="text"
+                          placeholder="How much to restock?"
+                          name="productStockQuantity"
+                          class="userActionForm"
+                        />
+                        <button id="orderButton" type="submit">
+                          Add Stock
+                        </button>
+                      </form>
+                      <iframe
+                        name="quantity-frame"
+                        style="display: none"
+                      ></iframe>
+                    </div>
+                    <button class="button" id="userActionButtonOrder">
+                      Order
+                    </button>
+                    <script>
+                      if (window.history.replaceState) {
+                        window.history.replaceState(
+                          null,
+                          null,
+                          window.location.href
+                        );
+                      }
+                    </script>
+                  </div>
+                  <div class="userActionBoxes" id="salesBox">
+                    <div class="actionBoxTitle" id="informativeTitle">
+                      <span class="text"> Sales </span>
+                      <span class="closeIcon">
+                        <img
+                          src="{% static 'home/images/closeIcon.svg' %}"
+                          alt="close Icon"
+                          id="closeIcon2"
+                        />
+                      </span>
+                    </div>
+                    <div class="actionBoxTitle inform" id="displayTitle">
+                      <span class="text"> Make a New Sale </span>
+                    </div>
+                    <form id="salesForm" method="post">
+                      {% csrf_token %}
+                      <input type="hidden" name="form_type" value="salesForm" />
+                      <select name="productSaleName" class="userActionForm" id="productSaleName">
+                        <option disabled selected>
+                          Choose the Product to sell
+                        </option>
+                        {% for product in products %}
+                        <option>{{ product.product_name }}</option>
+                        {% endfor %}
+                        <option class="addProductToggle">Add a product</option>
+                      </select>
+                      <div id="productQuantityCollective">
+                        <input
+                          type="text"
+                          placeholder="How much sold?"
+                          name="productSaleQuantity"
+                          id="productSaleQuantity"
+                          class="userActionForm"
+                          required
+                        />
+                        <div id="salesStockQuantity"></div>
+                      </div>
+                      <select name="purchaseMethod" class="userActionForm">
+                        <option disabled selected>
+                          Choose A Method of payment
+                        </option>
+                        {% for paymentMethod in paymentMethods %}
+                        <option>{{ paymentMethod }}</option>
+                        {% endfor %}
+                      </select>
+                      <button id="salesButton" type="submit">
+                        Make a Sale
+                      </button>
+                    </form>
+                    <button class="button">Sales</button>
+                  </div>
+                  <div id="toogleBox"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <script src="{% static 'home/js/script.js' %}"></script>
+    <script src="{% static 'home/js/jquery-3.7.1.min.js' %}"></script>
+    <script src="{% static 'home/js/animation.js' %}"></script>
+    <script>
+      var dynamicDataUrl = "{% url 'dynamicData' %}";
+    </script>
+    <script src="{% static 'home/js/backend.js' %}"></script>
+  </body>
+</html>

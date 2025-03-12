@@ -1,0 +1,112 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add New Products</title>
+    <link rel="stylesheet" href="{% static 'frontend/styles.css' %}" />
+</head>
+<body>
+    <div id="productAddContainer">
+        <form id="productAddForm" method="post" enctype="multipart/form-data">
+          {% csrf_token %}
+          <div id="productAddHeader">
+            <span class="productAddText" id="frontText"> Add Product to SmartStock</span>
+            <span class="productAddText" id="behindText"> Add Product to SmartStock</span>
+            
+          </div>
+  
+  
+          <div id="productAddInputContainer">
+            <div id="productProfileDetails">
+              <div id="productProfileDetailsChild">
+  
+                <div class="productAddInputParent">
+                  <span>The name of the product</span>
+                  <input type="text" class="productAddInput" id="productAddName" name="productAddName">
+                </div>
+                <div id="productSecondaryDetails">
+                  <div class="productAddInputParent">
+                    <span>Product Photo</span>
+                    <input type="file"  id="productPhoto" name="productPhoto" hidden>
+                    <label for="productPhoto" id="productPhotoChoice" class="productAddInput"><img src="{% static 'home/images/imageIcon.svg' %}" id="productPhotoIcon">  Choose File</label>
+                  </div>
+                  <div class="productAddInputParent">
+                    <span>Product Units</span>
+                    <select type="text" class="productAddInput" id="productUnit" name="productUnit">
+                      {% for unit in units %}
+                      <option class="productCategoryOptions">{{ unit.unit_of_measurement}}</option>
+                      {% endfor %}
+                    </select>
+                  </div>
+                </div>
+              </div>
+              <div class="productAddInputParent">
+                <span>A brief description of the product</span>
+                <input type="text" class="productAddInput" id="productDescription" name="productDescription">
+              </div>
+            </div>
+  
+            <div id="productFinancialDetail">
+  
+              <div class="productAddInputParent">
+                <span>Category</span>
+                <select type="text" class="productAddInput" id="productCategory" name="productCategory" >
+                  {% for category in categories %}
+                  <option class="productCategoryOptions">{{ category.category_name}}</option>
+                  {% endfor %}
+                </select>
+              </div>
+              <div class="productAddInputParent">
+                <span>Cost Price</span>
+                <input type="text" class="productAddInput" id="productCost" name="productCost">
+              </div>
+              <div class="productAddInputParent">
+                <span>Selling Price</span>
+                <input type="text" class="productAddInput" id="productCreationPrice" name="productCreationPrice">
+              </div>
+              <div class="productAddInputParent">
+                <span>Stock Amount</span>
+                <input type="text" class="productAddInput" id="productInitialQuantity" name="productInitialQuantity">
+              </div>
+            </div>
+  
+            <div id="productReport">
+              <span id="reportTitle">PRODUCTS IN STOCK</span>
+              <div class="stock-table">
+                <table>
+                  <thead>
+                    <tr>
+                      <th id="photoRow">Photo</th>
+                      <th>Name</th>
+                      <th>Description</th>
+                      <th>Category</th>
+                      <th class="price">Price (Ksh)</th>
+                      <th class="price">Quantity</th>
+                    </tr>
+                  </thead>
+                  <hr id="stockList">
+                    {% for product in products %}
+                    <tr>
+                      <td>
+                        <img src="{% if product.product_photo %}{{ product.product_photo.url }}{% else %}/media/uploads/productPhoto/productDefaultImage.svg{% endif %}" class="productLogoImage"></td>
+                      <td>{{ product.product_name }}</td>
+                      <td>{{ product.product_description }}</td>
+                      <td>{{ product.category_id.category_name }}</td>
+                      <td class="price">{{ product.product_price }}</td>
+                      <td class="price">{{ product.product_quantity }} {{ product.unit_of_measure }}</td>
+                    </tr>
+                    {% endfor %}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <button id="productAddButton" type="submit"> Add Product </button>
+  
+  
+          </div>
+        </form>
+      </div>
+</body>
+</html>

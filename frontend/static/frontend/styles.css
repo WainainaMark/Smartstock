@@ -1,0 +1,248 @@
+body {
+  overflow: hidden;
+  display: flex;
+  height: 100vh;
+  margin: 0px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, sans-serif;
+}
+#productAddContainer,
+#headerShadow {
+  height: 100%;
+  width: 100%;
+}
+#productAddContainer {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  transition: all 0.5s ease-out;
+  z-index: 99;
+  background: rgba(0, 0, 0, 0.75);
+}
+
+#productAddForm {
+  margin: 20px;
+  flex-grow: 0.85;
+  padding: 20px;
+  background-color: #acad8d;
+  z-index: 99;
+  border: 1px solid;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 20px;
+}
+
+#productAddHeader {
+  height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  background-color: #35352c;
+  overflow-y: hidden;
+  position: relative;
+  width: 75%;
+  border-radius: 10px;
+}
+
+#headerShadow {
+  position: absolute;
+  box-shadow: inset -25px 25px 50px;
+  z-index: 3;
+}
+.productAddText {
+  font-size: 4rem;
+  font-weight: bold;
+  color: #82826d;
+  z-index: 2;
+  animation: checkIn 1s ease-in forwards;
+}
+
+#behindText {
+  position: absolute;
+  transform: translate(-3px, 3px);
+  color: #1a1a16;
+  z-index: 0;
+}
+
+
+#productAddInputContainer {
+  height: 100%;
+  width: 75%;
+  flex-grow: 1;
+  margin-top: 20px;
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  display: flex;
+  opacity: 1;
+}
+
+#productAddButton {
+  color: white;
+  background-color: #35352c;
+  border: 1px solid white;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.5s ease-in;
+  position: absolute;
+  bottom: 20px;
+  align-self: center;
+  left: 50%;
+  transform: translateX(-50%);
+  height: 50px;
+  width: 150px;
+  font-size: 1rem;
+}
+
+.productAddInput {
+  height: 40px;
+  width: 100%;
+  border: none;
+  border-radius: 10px;
+  margin-top: 10px;
+  padding: 5px;
+  padding-left: 10px;
+}
+#parent1 {
+  margin-top: 0px;
+}
+.productAddInputParent {
+  flex-grow: 0.5;
+  display: flex;
+  flex-direction: column;
+}
+
+#productDescription {
+  flex-grow: 1;
+}
+
+#productPhotoChoice {
+  font-size: 1rem;
+}
+
+#productProfileDetails,
+#productProfileDetailsChild {
+  display: flex;
+  gap: 20px;
+}
+#productProfileDetailsChild {
+  flex-direction: column;
+  flex: 1;
+}
+
+.productCategoryOptions {
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+#productSecondaryDetails {
+  display: flex;
+}
+#productPhotoIcon {
+  height: 40px;
+  background-color: #6f6f60;
+  padding: 5px;
+  padding-left: 10px;
+  padding-right: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.5s ease;
+}
+#productPhotoIcon:hover {
+  background-color: #8f8f7a;
+}
+
+#productPhotoChoice {
+  font-size: 1.6rem;
+  display: flex;
+  gap: 10px;
+  align-items: first baseline;
+  margin-top: 0px;
+}
+
+#productFinancialDetail {
+  display: flex;
+  gap: 40px;
+  margin: 40px;
+  align-self: center;
+}
+
+.stock-table {
+  background: white;
+  border-radius: 0.5rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column-reverse;
+  overflow-y: scroll;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th,
+td {
+  padding: 0.75rem 1rem;
+  text-align: left;
+  border-bottom: 1px solid var(--border-color);
+}
+
+th {
+  background: #35352c;
+  font-weight: 600;
+}
+thead {
+  position: sticky;
+  top: 0;
+}
+#photoRow {
+  width: 60px;
+}
+
+.price {
+  text-align: right;
+}
+
+/* Webkit Browsers (Chrome, Edge, Safari) */
+.stock-table::-webkit-scrollbar {
+  width: 8px; /* Adjust scrollbar width */
+}
+
+.stock-table tbody::-webkit-scrollbar-thumb {
+  background: #005477; /* Scrollbar color */
+  border-radius: 5px;
+}
+
+.stock-table::-webkit-scrollbar-track {
+  background: #f0f0f0; /* Track color */
+}
+
+/* Firefox */
+.stock-table {
+  scrollbar-width: thin; /* Options: auto, thin, none */
+  scrollbar-color: #005477 #f0f0f0; /* thumb color | track color */
+}
+
+#productReport {
+  display: flex;
+  flex-direction: column;
+  max-height: 300px;
+}
+
+#reportTitle {
+  align-self: center;
+  font-size: 1.6rem;
+  margin: 20px;
+  text-decoration-line: underline;
+  text-decoration-thickness: 3px;
+}
+
+.productLogoImage {
+  height: 50px;
+}

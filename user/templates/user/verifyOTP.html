@@ -1,0 +1,29 @@
+{% load static %}
+{% extends 'user/base.html' %}
+
+{% block title %}Forgot Password{% endblock %}
+
+{% block content %}
+<span class="text">Forgotten Your Password?</span>
+<span>Reset It below</span>
+
+<span>An OTP has been sent to your email</span>
+<form method="post" id="otpForm">
+    {% csrf_token %}
+    <input type="text" name="otp" id="otp" placeholder="Enter the OTP" class="large-input" required>
+    <button>Send OTP</button>
+</form>
+
+<p id="otp-error"></p>
+
+<script src="{% static 'user/script.js' %}"></script>
+
+{% if messages %}
+    <ul>
+        {% for message in messages %}
+            <li>{{ message }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+
+{% endblock %}

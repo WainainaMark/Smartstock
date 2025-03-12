@@ -1,0 +1,7 @@
+Issue
+1. Doesnt allow login of normal customer
+2. Date is not in our timezones
+
+Rate 1 - 10
+
+9

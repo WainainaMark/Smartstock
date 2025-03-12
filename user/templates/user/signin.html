@@ -1,0 +1,20 @@
+{% extends 'user/base.html' %}
+
+{% block title %}SignIn{% endblock %}
+
+{% block content %}
+<span class="text">Welcome to SmartStock</span>
+<span>Kindly Sign In below</span>
+<form method="post">
+    {%csrf_token%}
+    <input type="text" name="username" placeholder="Username" class="large-input" required>
+    <input type="email" name="email" placeholder="Email Address" class="large-input" required>
+    <input type="password" name="password" placeholder="Password" class="large-input" required>
+    <input type="password" name="password2" placeholder="Repeat Password" class="large-input" required>
+    <button>Sign Up</button>
+    <a href="{% url 'login' %}" > Login</a>
+    
+
+</form>
+
+{% endblock %}
