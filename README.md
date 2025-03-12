@@ -1,14 +1,17 @@
 Click here to explore SmartStock
 # > [EXPLORE SMARTSTOCK](https://smartstock-uapd.onrender.com)
-# SmartStock
+
+If loading slowly, just understand, at least its live!!🙂
+
+# SmartStock 📊
 This is the repository for SmartStock - A dynamic retail stock management App
 
-# What is SmartStock?
+# What is SmartStock? 🤷‍♂️
 SmartStock is the a new revolution for retail shop owners!
 No more hassle of writing data down, remembering your last order! All that is taken care of with your new SmartStock app
 
-## How to run?  
-### For Tech Savvy Users!!  
+## How to run?🏃‍♂️
+### For Tech Savvy Users!!  💻
 Using your available codespace, with python and django installed
 
 `pip install django`

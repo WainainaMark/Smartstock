@@ -66,7 +66,7 @@ def addProduct(request):
     return render(request, "home/home.html")
 
 def addOrder(request):
-       
+    #Adds order to the models and records Transaction
     product_order_name =request.POST.get('productOrderName')
     product_order_quantity = request.POST.get("productOrderQuantity")
     supplier_name = request.POST.get("supplierName")
@@ -135,7 +135,7 @@ def productAdd(request):
 
 
 def addSales(request):
-    # Sales Form
+    # Records Sales and adds Transaction
     product_sale_name = request.POST.get('productSaleName')
     product_sale_quantity = request.POST.get("productSaleQuantity")  
     product_payment_method = request.POST.get("purchaseMethod")
@@ -187,6 +187,7 @@ def addSales(request):
     return render(request, 'home/home.html', backendData )  
 
 def addStock(request):
+    #The retailer can add the product to the database without a supplier
     product_stock_name = request.POST.get("productStockName")
     product_stock_quantity = request.POST.get("productStockQuantity")
     

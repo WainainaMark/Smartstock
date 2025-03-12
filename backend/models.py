@@ -28,6 +28,9 @@ def increment_receipt_id(current_id):
 
 
 # Create your models here.
+# Here lies my database schema for my SmartStock App
+
+#The categories of the products
 class Category(models.Model):
     category_id = models.AutoField(primary_key=True)  # The Category DB automatically creates this
     category_name = models.CharField(max_length=100)  # The name of the category based on the id
@@ -36,6 +39,7 @@ class Category(models.Model):
     def __str__(self):
         return self.category_name
 
+#The units of the products
 class Unit(models.Model):
     unit_id = models.AutoField(primary_key=True)
     unit_of_measurement = models.CharField(max_length=100)
@@ -44,6 +48,7 @@ class Unit(models.Model):
     def __str__(self):
         return self.unit_of_measurement
 
+#The main database for the products
 class Product(models.Model):
     product_id = models.AutoField(primary_key=True)  # The productDb automatically creates this
     product_name = models.CharField(max_length=100)  # The name of the product
@@ -76,7 +81,8 @@ class Product(models.Model):
             margin = ((self.product_price - self.product_cost) / self.product_cost) * 100
             return round(margin, 2)
         return 0
-   
+  
+#Stores the orders made by the user
 class Order(models.Model):
     ORDER_STATUS_CHOICES = [
         ('PENDING', 'Pending'),
@@ -98,36 +104,9 @@ class Order(models.Model):
         return f"Order #{self.order_number}"
     
     
-    # def receive_order(self):
-    #     """Mark the order as received and update inventory"""
-    #     if self.order_status != 'DELIVERED':
-    #         self.order_status = 'DELIVERED'
-    #         self.save()
-            
-    #         # Create transactions for all items in this order
-    #         items = OrderItem.objects.filter(order_id=self)
-    #         for item in items:
-    #             Transactions.objects.create(
-    #                 product_id=item.product_id,
-    #                 transaction_amount=item.product_quantity,
-    #                 transaction_type='ORDER_RECEIVED',
-    #                 order_id=self
-    #             )
-                
-    #             # Update product cost
-    #             item.product_id.update_cost_from_order(item.unit_price)
-    
-    # def cancel_order(self):
-    #     """Cancel the order if it hasn't been delivered yet"""
-    #     if self.order_status not in ['DELIVERED', 'CANCELLED']:
-    #         self.order_status = 'CANCELLED'
-    #         self.save()
-    #         return True
-    #     return False
-
+#Stores the information for each order of the item
 class OrderItem(models.Model):
     order_item_id = models.AutoField(primary_key=True)  # the orderItemDb automatically creates this
-    # order_id = models.ForeignKey(Order, on_delete=models.CASCADE)  # The order ID gotten from the OrderDb
     product = models.ForeignKey(Product, on_delete=models.CASCADE)  # The product ID gotten from the product DB
     product_quantity = models.IntegerField()  # The quantity of A SINGLE product in the order
     unit_price = models.DecimalField(max_digits=10, decimal_places=2)  # The unit price of the product being ordered then updates this in productDb
@@ -137,19 +116,11 @@ class OrderItem(models.Model):
     def save(self, *args, **kwargs):
         self.total_price = int(self.product_quantity) * int(self.unit_price)
         super().save(*args, **kwargs)
-        
-        # Update the parent order totals
-        # self.order_id.update_totals()
     
-    # def delete(self, *args, **kwargs):
-    #     order = self.order_id
-    #     super().delete(*args, **kwargs)
-    #     order.update_totals()
     
-    def __int__(self):
-        # return f"{self.product_quantity} x {self.product_id.product_name} for Order #{self.order_id.order_number}"
-        return self.order_item_id
+    def __int__(self):return self.order_item_id
    
+#Stores the detail of every Transaction made
 class Transactions(models.Model):
     TRANSACTION_TYPES = [
         ('SALE', 'Sale'),
@@ -210,7 +181,8 @@ class Transactions(models.Model):
 
             self.transaction_receipt_id = new_receipt_id
         super().save(*args, **kwargs)
-    
+ 
+#The details of the supplier is stored here   
 class Supplier(models.Model):
     supplier_id = models.AutoField(primary_key=True)
     supplier_name = models.CharField(max_length=50) #The name of the supplier
@@ -223,7 +195,7 @@ class Supplier(models.Model):
     
     #A whole page for these information entering will be created
 
-    
+#The sales of each item
 class SalesItem(models.Model):
     saleItem_id = models.AutoField(primary_key=True)
     product_id = models.ForeignKey(Product, on_delete=models.CASCADE)
@@ -236,7 +208,8 @@ class SalesItem(models.Model):
             self.product_totalCost = Decimal(self.product_quantity) * self.product_id.product_price
         
         super().save(*args, **kwargs)
-        
+  
+#The expenses incurred       
 class Expenses(models.Model):
     expense_id = models.AutoField(primary_key=True)
     expense_detail = models.CharField(max_length=20)
