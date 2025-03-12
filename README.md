@@ -6,6 +6,10 @@ SmartStock is the a new revolution for retail shop owners!
 No more hassle of writing data down, remembering your last order! All that is taken care of with your new SmartStock app
 
 ## How to run?  
+Click the link below and experience SmartStock with predefined values  
+[Run SmartStock!](https://bookish-waddle-57wgxvv55q5cvv5q-8000.app.github.dev)
+
+###For Tech Savvy Users!!  
 Using your available codespace, with python and django installed
 
 `pip install django`
