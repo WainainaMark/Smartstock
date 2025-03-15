@@ -71,7 +71,10 @@ productCloseIcon.addEventListener("click", () => {
 productAddToggles.forEach((toggle, index) => {
   toggle.addEventListener("click", () => {
     productAddContainer.style.display = "flex";
-    productAddContainer.style.opacity = "1";
+    setTimeout(()=>{
+      productAddContainer.style.opacity = "1";
+
+    }, 500)
   });
 });
 

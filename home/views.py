@@ -129,9 +129,6 @@ def addOrder(request):
         }
     return render(request, 'home/home.html', backendData)
 
-def productAdd(request):
-    
-    return render(request, "home/productAddForm.html")
 
 
 def addSales(request):
@@ -212,3 +209,5 @@ def dynamicData(request):
         })
     
     return JsonResponse({"error": "Product not found"}, status=404)
+
+

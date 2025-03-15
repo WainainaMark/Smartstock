@@ -47,12 +47,21 @@ class Unit(models.Model):
     
     def __str__(self):
         return self.unit_of_measurement
+    
+class Manufacturer(models.Model):
+    manufacturer_id = models.AutoField(primary_key=True)
+    manufacturer_name = models.CharField(max_length=100)
+
+
+class FakeDatabase(models.Model):
+    photo = models.FileField(upload_to='media/productPhoto')
 
 #The main database for the products
 class Product(models.Model):
     product_id = models.AutoField(primary_key=True)  # The productDb automatically creates this
     product_name = models.CharField(max_length=100)  # The name of the product
     product_description = models.TextField()  # A brief description of the product
+    product_manufacturer = models.ForeignKey(Manufacturer, on_delete=models.CASCADE, default=None) #Stores the name of the manufacturer here
     category_id = models.ForeignKey(Category, on_delete=models.CASCADE)  # Stores the id of the category to be referenced later in the Category DB
     unit_id = models.ForeignKey(Unit, on_delete=models.CASCADE)  # What measuring unit is used for this type of product, its populated from Unit Model
     product_cost = models.DecimalField(max_digits=10, decimal_places=2, editable=False, default=0)  # The product_cost is updated from the OrderItem DB, the buying cost

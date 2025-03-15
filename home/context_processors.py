@@ -10,8 +10,47 @@ def backend_data(request):
     categories = Category.objects.all()
     units = Unit.objects.all()
     total_product = Product.objects.count()
+    manufacturers = Manufacturer.objects.all()
     user_logged_in = request.user
     paymentMethods = {"Mpesa": "mpesa", "Cash": "cash", "Loop": "loop"}
+    titles = {
+        "formal": ["Mr.", "Mrs.", "Ms.", "Miss", "Mx.", "Dr.", "Prof."],
+        "religious": [
+            "Father",
+            "Sister",
+            "Brother",
+            "Pastor",
+            "Reverend",
+            "Imam",
+            "Rabbi",
+            "Bishop",
+            "Pope",
+        ],
+        "academic": ["Professor", "Dean", "Chancellor"],
+        "medical": ["Dr.", "Surgeon", "Dentist", "Nurse"],
+        "military": [
+            "General",
+            "Colonel",
+            "Major",
+            "Captain",
+            "Lieutenant",
+            "Sergeant",
+            "Corporal",
+            "Private",
+        ],
+        "government": [
+            "President",
+            "Governor",
+            "Senator",
+            "Mayor",
+            "Ambassador",
+            "Minister",
+            "Prime Minister",
+        ],
+        "nobility": ["Sir", "Dame", "Lord", "Lady"],
+        "business": ["CEO", "CFO", "COO", "Director", "Manager"],
+        "legal": ["Judge", "Justice", "Attorney", "Counselor"],
+    }
 
     today = localtime().date()
     full_total_cost = SalesItem.objects.aggregate(Sum("product_totalCost"))[
@@ -41,7 +80,6 @@ def backend_data(request):
 
     # Weekly sales & order data
     from collections import defaultdict
-
 
     # Retrieve all transactions
     transactions = Transactions.objects.all()
@@ -81,20 +119,22 @@ def backend_data(request):
             "profit": profit,
         }
 
-    
     return {
         "full_total_cost": full_total_cost,
         "full_order_total_cost": full_order_total_cost,
+        # PASSAGE TO TEMPLATES
         "products": products,
         "suppliers": suppliers,
         "categories": categories,
         'total_product': total_product,
         "units": units,
         "paymentMethods": paymentMethods,
+        'titles': titles,
         "transactions": transactions,
+        "manufacturers": manufacturers,
         "user": user_logged_in,
         "total_sales_today": total_sales_today,
         "total_order_today": total_order_today,
         "total_profit": total_profit_today,
-        "daily_results": daily_results
+        "daily_results": daily_results,
     }

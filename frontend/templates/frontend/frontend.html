@@ -1,0 +1,520 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SmartStock Fronted</title>
+    <link rel="stylesheet" href="{% static 'frontend/css/productAdd.css' %}" />
+  </head>
+  <body>
+    <section>
+      <sidebar>
+        <div id="choices">
+          <div class="choice centerAlign" id="productAddChoice">
+            <svg viewBox="0 0 24 24" fill="none" class="icon">
+              <path
+                class="top"
+                opacity="0.4"
+                d="M19.24 5.58006H18.84L15.46 2.20006C15.19 1.93006 14.75 1.93006 14.47 2.20006C14.2 2.47006 14.2 2.91006 14.47 3.19006L16.86 5.58006H7.14L9.53 3.19006C9.8 2.92006 9.8 2.48006 9.53 2.20006C9.26 1.93006 8.82 1.93006 8.54 2.20006L5.17 5.58006H4.77C3.87 5.58006 2 5.58006 2 8.14006C2 9.11006 2.2 9.75006 2.62 10.1701C2.86 10.4201 3.15 10.5501 3.46 10.6201C3.75 10.6901 4.06 10.7001 4.36 10.7001H19.64C19.95 10.7001 20.24 10.6801 20.52 10.6201C21.36 10.4201 22 9.82006 22 8.14006C22 5.58006 20.13 5.58006 19.24 5.58006Z"
+              />
+              <path
+                class="bottom"
+                d="M19.6509 10.7001H4.36094C4.06094 10.7001 3.75094 10.6901 3.46094 10.6201L4.72094 18.3001C5.00094 20.0201 5.75094 22.0001 9.08094 22.0001H14.6909C18.0609 22.0001 18.6609 20.3101 19.0209 18.4201L20.5309 10.6201C20.2509 10.6801 19.9509 10.7001 19.6509 10.7001ZM10.6109 17.1601C10.6109 17.5501 10.3009 17.8601 9.91094 17.8601C9.52094 17.8601 9.21094 17.5501 9.21094 17.1601V13.8601C9.21094 13.4701 9.52094 13.1601 9.91094 13.1601C10.3009 13.1601 10.6109 13.4701 10.6109 13.8601V17.1601ZM14.8909 17.1601C14.8909 17.5501 14.5809 17.8601 14.1909 17.8601C13.8009 17.8601 13.4909 17.5501 13.4909 17.1601V13.8601C13.4909 13.4701 13.8009 13.1601 14.1909 13.1601C14.5809 13.1601 14.8909 13.4701 14.8909 13.8601V17.1601Z"
+              />
+            </svg>
+            <span class="text sidebarText"> Add Product </span>
+          </div>
+          <div class="choice centerAlign" id="supplierAddChoice">
+            <svg viewBox="0 0 24 24" fill="none" class="icon">
+              <path
+                opacity="0.4"
+                class="top"
+                d="M12 2C9.38 2 7.25 4.13 7.25 6.75C7.25 9.32 9.26 11.4 11.88 11.49C11.96 11.48 12.04 11.48 12.1 11.49C12.12 11.49 12.13 11.49 12.15 11.49C12.16 11.49 12.16 11.49 12.17 11.49C14.73 11.4 16.74 9.32 16.75 6.75C16.75 4.13 14.62 2 12 2Z"
+              />
+              <path
+                class="bottom"
+                d="M17.0809 14.1499C14.2909 12.2899 9.74094 12.2899 6.93094 14.1499C5.66094 14.9999 4.96094 16.1499 4.96094 17.3799C4.96094 18.6099 5.66094 19.7499 6.92094 20.5899C8.32094 21.5299 10.1609 21.9999 12.0009 21.9999C13.8409 21.9999 15.6809 21.5299 17.0809 20.5899C18.3409 19.7399 19.0409 18.5999 19.0409 17.3599C19.0309 16.1299 18.3409 14.9899 17.0809 14.1499Z"
+              />
+            </svg>
+            <span class="text sidebarText"> Add Supplier </span>
+          </div>
+          <div id="settings" class="centerAlign">
+            <svg viewBox="0 0 24 24" fill="none" class="icon">
+              <path
+                opacity="0.4"
+                class="top"
+                d="M2 12.8799V11.1199C2 10.0799 2.85 9.21994 3.9 9.21994C5.71 9.21994 6.45 7.93994 5.54 6.36994C5.02 5.46994 5.33 4.29994 6.24 3.77994L7.97 2.78994C8.76 2.31994 9.78 2.59994 10.25 3.38994L10.36 3.57994C11.26 5.14994 12.74 5.14994 13.65 3.57994L13.76 3.38994C14.23 2.59994 15.25 2.31994 16.04 2.78994L17.77 3.77994C18.68 4.29994 18.99 5.46994 18.47 6.36994C17.56 7.93994 18.3 9.21994 20.11 9.21994C21.15 9.21994 22.01 10.0699 22.01 11.1199V12.8799C22.01 13.9199 21.16 14.7799 20.11 14.7799C18.3 14.7799 17.56 16.0599 18.47 17.6299C18.99 18.5399 18.68 19.6999 17.77 20.2199L16.04 21.2099C15.25 21.6799 14.23 21.3999 13.76 20.6099L13.65 20.4199C12.75 18.8499 11.27 18.8499 10.36 20.4199L10.25 20.6099C9.78 21.3999 8.76 21.6799 7.97 21.2099L6.24 20.2199C5.33 19.6999 5.02 18.5299 5.54 17.6299C6.45 16.0599 5.71 14.7799 3.9 14.7799C2.85 14.7799 2 13.9199 2 12.8799Z"
+              />
+              <path
+                class="bottom"
+                d="M12 15.25C13.7949 15.25 15.25 13.7949 15.25 12C15.25 10.2051 13.7949 8.75 12 8.75C10.2051 8.75 8.75 10.2051 8.75 12C8.75 13.7949 10.2051 15.25 12 15.25Z"
+              />
+            </svg>
+
+            <span class="text sidebarText"> Settings </span>
+          </div>
+        </div>
+      </sidebar>
+      <container id="container">
+        <div id="productAddContainer">
+          <form id="productForm" class="form" method="post">
+            {% csrf_token %}
+            <input hidden name="form_type" name="productAddForm" />
+            <span class="text formHeader"> Add Product to SmartStock </span>
+            <hr />
+            <div id="productAdd">
+              <div class="col">
+                <div class="grid2">
+                  <div class="inputBox col gap">
+                    <label for="productAdd" class="text"
+                      >Whats the name of the product?
+                      <span style="color: re"></span>
+                    </label>
+                    <input
+                      type="text"
+                      name="productAdd"
+                      id="productName"
+                      required
+                    />
+                    <span class="text descriptionText">(Eggs, Books..)</span>
+                  </div>
+                  <div id="productAddExtras" class="row gap">
+                    <div class="upCont col">
+                      <label for="productUnit" class="text"
+                        >Whats the unit of the product?
+                      </label>
+                      <select name="productUnit" id="productUnit" required>
+                        <option disabled selected>Choose A unit</option>
+                        {% for unit in units %}
+                        <option>{{unit}}</option>
+                        {% endfor %}
+                      </select>
+                    </div>
+                    <div class="upCont col">
+                      <label for="productCategory" class="text"
+                        >What's the product Category?
+                      </label>
+                      <select name="productCategory" required>
+                        <option disabled selected>Choose A Category</option>
+                        {% for category in categories %}
+                        <option>{{ category }}</option>
+                        {% endfor %}
+                      </select>
+                    </div>
+                  </div>
+                </div>
+                <div class="grid2">
+                  <div class="inputBox col gap marginRight">
+                    <input
+                      type="text"
+                      name="description"
+                      id="descriptionInput"
+                      hidden
+                    />
+                    <span class="text"> Describe the Product</span>
+                    <div
+                      contenteditable="true"
+                      spellcheck="true"
+                      id="productDescriptionInput"
+                      class="marginRight"
+                      aria-required="true"
+                    ></div>
+                    <span class="text descriptionText"
+                      >(Colour, Material...)</span
+                    >
+                  </div>
+                  <div class="upCont col">
+                    <span class="text">
+                      Does the product have a manufacturer?</span
+                    >
+                    <select
+                      id="productManufacturer"
+                      name="manufacturer"
+                      required
+                    >
+                      <option disabled selected>Choose a Manufacturer?</option>
+                      <option disabled>If yes, choose one below</option>
+                      {% for manufacturer in manufacturers %}
+                      <option>{{ manufacturer.manufacturer_name }}</option>
+                      {% endfor %}
+                      <option disabled>If not listed, choose other</option>
+                      <option>Other</option>
+                    </select>
+                    <input
+                      type="text"
+                      id="manufacturerType"
+                      name="manufacturerNew"
+                    />
+                  </div>
+                </div>
+                <div id="productFinancial">
+                  <div class="col gap marginRight">
+                    <div class="col">
+                      <span class="text"> Product Cost </span>
+                      <input
+                        type="text"
+                        placeholder="How much did you buy the product?"
+                        id="productCost"
+                        class="finance"
+                        required
+                        name="cost"
+                      />
+                      <span
+                        class="text descriptionText"
+                        id="productCostUnitText"
+                      ></span>
+                    </div>
+                    <div class="col">
+                      <span class="text"> Product Price </span>
+                      <input
+                        type="text"
+                        placeholder="How much will you sell the product?"
+                        id="productPrice"
+                        class="finance"
+                        required
+                        name="price"
+                      />
+                      <span
+                        class="text descriptionText"
+                        id="productPriceUnitText"
+                      ></span>
+                    </div>
+                  </div>
+                  <div class="upCont col">
+                    <span class="text financialText" id="defaultText">
+                      Enter the product Cost and Price and get profit Info
+                    </span>
+                    <div class="col">
+                      <span class="text financialText" id="financialHeading">
+                        The product will give you a net result of
+                      </span>
+                      <div class="centerAll">
+                        <div id="resultIcons">
+                          <svg
+                            class="netResultIcon"
+                            id="lossIcon"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                          >
+                            <path
+                              class="lossTop"
+                              d="M16.19 2H7.81C4.17 2 2 4.17 2 7.81V16.18C2 19.83 4.17 22 7.81 22H16.18C19.82 22 21.99 19.83 21.99 16.19V7.81C22 4.17 19.83 2 16.19 2Z"
+                            />
+                            <path
+                              class="lossBottom"
+                              d="M12.0002 14.9098C11.8102 14.9098 11.6202 14.8398 11.4702 14.6898L7.94016 11.1598C7.65016 10.8698 7.65016 10.3898 7.94016 10.0998C8.23016 9.80982 8.71016 9.80982 9.00016 10.0998L12.0002 13.0998L15.0002 10.0998C15.2902 9.80982 15.7702 9.80982 16.0602 10.0998C16.3502 10.3898 16.3502 10.8698 16.0602 11.1598L12.5302 14.6898C12.3802 14.8398 12.1902 14.9098 12.0002 14.9098Z"
+                            />
+                          </svg>
+                          <svg
+                            class="netResultIcon"
+                            id="profitIcon"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                          >
+                            <path
+                              class="profitTop"
+                              d="M16.19 2H7.81C4.17 2 2 4.17 2 7.81V16.18C2 19.83 4.17 22 7.81 22H16.18C19.82 22 21.99 19.83 21.99 16.19V7.81C22 4.17 19.83 2 16.19 2Z"
+                            />
+                            <path
+                              class="profitLoss"
+                              d="M15.5302 14.2101C15.3402 14.2101 15.1502 14.1401 15.0002 13.9901L12.0002 10.9901L9.00016 13.9901C8.71016 14.2801 8.23016 14.2801 7.94016 13.9901C7.65016 13.7001 7.65016 13.2201 7.94016 12.9301L11.4702 9.40012C11.7602 9.11012 12.2402 9.11012 12.5302 9.40012L16.0602 12.9301C16.3502 13.2201 16.3502 13.7001 16.0602 13.9901C15.9102 14.1401 15.7202 14.2101 15.5302 14.2101Z"
+                            />
+                          </svg>
+                        </div>
+                        <span class="text" id="netResult"></span>
+                      </div>
+                      <span class="text descriptionText" id="netResultInfo">
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div id="actions" class="col gap">
+              <span class="text descriptionText"> Optional </span>
+              <div id="choose">
+                <div id="chooseBox" class="choices">
+                  <div class="photoChoice col centerAll" id="unsplash">
+                    <img id="photoPreview" />
+                    <input type="text" id="photoUrl" name="photoUrl" hidden />
+                    <svg class="icon" viewBox="0 0 35 35" id="apiIcon">
+                      <path
+                        d="M10 9V0h12v9H10zm12 5h10v18H0V14h10v9h12v-9z"
+                        fill="#7289da"
+                        fill-rule="nonzero"
+                      />
+                    </svg>
+                    <span class="text photoText" id="apiText">
+                      Use Pexels
+                    </span>
+                  </div>
+                  <div class="photoChoice col centerAll" id="localPhoto">
+                    <input
+                      type="file"
+                      id="fileInput"
+                      style="display: none"
+                      accept="images/*"
+                    />
+                    <img id="localPhotoPreview" />
+                    <svg
+                      class="icon"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      id="apiIcon2"
+                    >
+                      <path
+                        class="top"
+                        d="M21.0602 11.8201L20.9002 11.6001C20.6202 11.2601 20.2902 10.9901 19.9102 10.7901C19.4002 10.5001 18.8202 10.3501 18.2202 10.3501H5.7702C5.1702 10.3501 4.6002 10.5001 4.0802 10.7901C3.6902 11.0001 3.3402 11.2901 3.0502 11.6501C2.4802 12.3801 2.2102 13.2801 2.3002 14.1801L2.6702 18.8501C2.8002 20.2601 2.9702 22.0001 6.1402 22.0001H17.8602C21.0302 22.0001 21.1902 20.2601 21.3302 18.8401L21.7002 14.1901C21.7902 13.3501 21.5702 12.5101 21.0602 11.8201ZM14.3902 17.3401H9.6002C9.2102 17.3401 8.9002 17.0201 8.9002 16.6401C8.9002 16.2601 9.2102 15.9401 9.6002 15.9401H14.3902C14.7802 15.9401 15.0902 16.2601 15.0902 16.6401C15.0902 17.0301 14.7802 17.3401 14.3902 17.3401Z"
+                      />
+                      <path
+                        class="bottom"
+                        opacity="0.4"
+                        d="M3.38086 11.31C3.60086 11.11 3.82086 10.93 4.08086 10.79C4.59086 10.5 5.17086 10.35 5.77086 10.35H18.2309C18.8309 10.35 19.4009 10.5 19.9209 10.79C20.1809 10.93 20.4109 11.11 20.6209 11.32V10.79V9.82C20.6209 6.25 19.5309 5.16 15.9609 5.16H13.5809C13.1409 5.16 13.1309 5.15 12.8709 4.81L11.6709 3.2C11.1009 2.46 10.6509 2 9.22086 2H8.04086C4.47086 2 3.38086 3.09 3.38086 6.66V10.8V11.31Z"
+                      />
+                    </svg>
+                    <span class="text photoText" id="localPhotoText">
+                      Upload photo
+                    </span>
+                  </div>
+                </div>
+                <div class="choices" id="confirmationBox">
+                  Are you sure you want to continue?
+                  <div id="confirmation" class="gap">
+                    <div class="confirmationChoice">NO</div>
+                    <button class="confirmationChoice" id="productAddButton">
+                      YES
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <div id="userButtons" class="gap">
+                <div id="searchPhoto" class="centerAlign gap">
+                  <svg
+                    class="icon"
+                    id="buttonIcon"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                  >
+                    <path
+                      class="top"
+                      d="M22.0206 16.8198L18.8906 9.49978C18.3206 8.15978 17.4706 7.39978 16.5006 7.34978C15.5406 7.29978 14.6106 7.96978 13.9006 9.24978L12.0006 12.6598C11.6006 13.3798 11.0306 13.8098 10.4106 13.8598C9.78063 13.9198 9.15063 13.5898 8.64063 12.9398L8.42063 12.6598C7.71063 11.7698 6.83063 11.3398 5.93063 11.4298C5.03063 11.5198 4.26063 12.1398 3.75063 13.1498L2.02063 16.5998C1.40063 17.8498 1.46063 19.2998 2.19063 20.4798C2.92063 21.6598 4.19063 22.3698 5.58063 22.3698H18.3406C19.6806 22.3698 20.9306 21.6998 21.6706 20.5798C22.4306 19.4598 22.5506 18.0498 22.0206 16.8198Z"
+                    />
+                    <path
+                      class="bottom"
+                      d="M6.96984 8.38012C8.83657 8.38012 10.3498 6.86684 10.3498 5.00012C10.3498 3.13339 8.83657 1.62012 6.96984 1.62012C5.10312 1.62012 3.58984 3.13339 3.58984 5.00012C3.58984 6.86684 5.10312 8.38012 6.96984 8.38012Z"
+                    />
+                  </svg>
+                  <span class="text buttonText">Search Photo</span>
+                </div>
+                <div id="formButton" class="centerAlign gap">
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    class="icon"
+                    id="buttonIcon"
+                  >
+                    <path
+                      class="top"
+                      d="M19.24 5.58006H18.84L15.46 2.20006C15.19 1.93006 14.75 1.93006 14.47 2.20006C14.2 2.47006 14.2 2.91006 14.47 3.19006L16.86 5.58006H7.14L9.53 3.19006C9.8 2.92006 9.8 2.48006 9.53 2.20006C9.26 1.93006 8.82 1.93006 8.54 2.20006L5.17 5.58006H4.77C3.87 5.58006 2 5.58006 2 8.14006C2 9.11006 2.2 9.75006 2.62 10.1701C2.86 10.4201 3.15 10.5501 3.46 10.6201C3.75 10.6901 4.06 10.7001 4.36 10.7001H19.64C19.95 10.7001 20.24 10.6801 20.52 10.6201C21.36 10.4201 22 9.82006 22 8.14006C22 5.58006 20.13 5.58006 19.24 5.58006Z"
+                    />
+                    <path
+                      class="bottom"
+                      d="M19.6509 10.7001H4.36094C4.06094 10.7001 3.75094 10.6901 3.46094 10.6201L4.72094 18.3001C5.00094 20.0201 5.75094 22.0001 9.08094 22.0001H14.6909C18.0609 22.0001 18.6609 20.3101 19.0209 18.4201L20.5309 10.6201C20.2509 10.6801 19.9509 10.7001 19.6509 10.7001ZM10.6109 17.1601C10.6109 17.5501 10.3009 17.8601 9.91094 17.8601C9.52094 17.8601 9.21094 17.5501 9.21094 17.1601V13.8601C9.21094 13.4701 9.52094 13.1601 9.91094 13.1601C10.3009 13.1601 10.6109 13.4701 10.6109 13.8601V17.1601ZM14.8909 17.1601C14.8909 17.5501 14.5809 17.8601 14.1909 17.8601C13.8009 17.8601 13.4909 17.5501 13.4909 17.1601V13.8601C13.4909 13.4701 13.8009 13.1601 14.1909 13.1601C14.5809 13.1601 14.8909 13.4701 14.8909 13.8601V17.1601Z"
+                    />
+                  </svg>
+                  <span class="text buttonText" id="buttonTextForm"
+                    >Add Product</span
+                  >
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+        <!-- Supplier Form -->
+        <div id="supplierAddContainer">
+          <form id="supplierForm" class="form" method="post">
+            {% csrf_token %}
+            <input hidden name="form_type" name="supplierAddForm" />
+            <span class="text formHeader"> Add Supplier to SmartStock </span>
+            <hr />
+            <div id="supplierAdd">
+              <div class="inputContainer">
+                <div id="supplierDetails" class="grid2">
+                  <div class="col inputBox gap marginRight">
+                    <label for="supplierName" class="text"
+                      >Name of the Supplier</label
+                    >
+                    <input type="text" name="supplierName" />
+                    <span class="text descriptionText">
+                      Org Name is allowed
+                    </span>
+                  </div>
+                  <div class="upCont col">
+                    <label for="supplierTitle" class="text"
+                      >Supplier's Title?</label
+                    >
+                    <select name="supplierTitle">
+                      <option disabled selected>Choose Title</option>
+                      <option>None</option>
+                      {% for key, values in titles.items %}
+                      <option disabled id="profTitle">
+                        {{ key|capfirst }} Titles
+                      </option>
+                      {% for value in values %}
+                      <option>{{ value }}</option>
+                      {% endfor %} {% endfor %}
+                    </select>
+                    <span class="text descriptionText"> None is allowed </span>
+                  </div>
+                </div>
+                <div id="supplierExtras" class="grid2">
+                  <div class="col inputBox gap marginRight">
+                    <label for="supplierNumber" class="text">
+                      Supplier's Mobile Number
+                    </label>
+                    <input
+                      type="text"
+                      name="supplierPhoneNumber"
+                      placeholder="+2547XX XXX XXX"
+                    />
+                  </div>
+                  <div class="row gap">
+                    <div class="upCont col gap">
+                      <label for="supplierLocation" class="text">
+                        Suppliers location
+                      </label>
+                      <input
+                        type="text"
+                        name="supplierLocation"
+                        placeholder="Google maps shortcode"
+                      />
+                      <span class="text descriptionText">
+                        Is the Location Data safe?
+                      </span>
+                    </div>
+                    <div class="upCont col gap">
+                      <label for="supplierLink" class="text">
+                        Suppliers Link
+                      </label>
+                      <input
+                        type="text"
+                        name="supplierLink"
+                        placeholder="www.supplier.com"
+                      />
+                      <span class="text descriptionText">
+                        Website or Address
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div id="actions" class="col gap">
+              <span class="text descriptionText"> Optional </span>
+              <div id="choose2">
+                <div id="chooseBox2" class="choices">
+                  <div class="photoChoice col centerAll" id="unsplash">
+                    <img id="photoPreview" />
+                    <input type="text" id="photoUrl" name="photoUrl" hidden />
+                    <svg class="icon" viewBox="0 0 35 35" id="apiIcon">
+                      <path
+                        d="M10 9V0h12v9H10zm12 5h10v18H0V14h10v9h12v-9z"
+                        fill="#7289da"
+                        fill-rule="nonzero"
+                      />
+                    </svg>
+                    <span class="text photoText" id="apiText">
+                      Use Pexels
+                    </span>
+                  </div>
+                  <div class="photoChoice col centerAll" id="localPhoto">
+                    <input
+                      type="file"
+                      id="fileInput"
+                      style="display: none"
+                      accept="images/*"
+                    />
+                    <img id="localPhotoPreview" />
+                    <svg
+                      class="icon"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      id="apiIcon2"
+                    >
+                      <path
+                        class="top"
+                        d="M21.0602 11.8201L20.9002 11.6001C20.6202 11.2601 20.2902 10.9901 19.9102 10.7901C19.4002 10.5001 18.8202 10.3501 18.2202 10.3501H5.7702C5.1702 10.3501 4.6002 10.5001 4.0802 10.7901C3.6902 11.0001 3.3402 11.2901 3.0502 11.6501C2.4802 12.3801 2.2102 13.2801 2.3002 14.1801L2.6702 18.8501C2.8002 20.2601 2.9702 22.0001 6.1402 22.0001H17.8602C21.0302 22.0001 21.1902 20.2601 21.3302 18.8401L21.7002 14.1901C21.7902 13.3501 21.5702 12.5101 21.0602 11.8201ZM14.3902 17.3401H9.6002C9.2102 17.3401 8.9002 17.0201 8.9002 16.6401C8.9002 16.2601 9.2102 15.9401 9.6002 15.9401H14.3902C14.7802 15.9401 15.0902 16.2601 15.0902 16.6401C15.0902 17.0301 14.7802 17.3401 14.3902 17.3401Z"
+                      />
+                      <path
+                        class="bottom"
+                        opacity="0.4"
+                        d="M3.38086 11.31C3.60086 11.11 3.82086 10.93 4.08086 10.79C4.59086 10.5 5.17086 10.35 5.77086 10.35H18.2309C18.8309 10.35 19.4009 10.5 19.9209 10.79C20.1809 10.93 20.4109 11.11 20.6209 11.32V10.79V9.82C20.6209 6.25 19.5309 5.16 15.9609 5.16H13.5809C13.1409 5.16 13.1309 5.15 12.8709 4.81L11.6709 3.2C11.1009 2.46 10.6509 2 9.22086 2H8.04086C4.47086 2 3.38086 3.09 3.38086 6.66V10.8V11.31Z"
+                      />
+                    </svg>
+                    <span class="text photoText" id="localPhotoText">
+                      Upload photo
+                    </span>
+                  </div>
+                </div>
+                <div class="choices" id="confirmationBox2">
+                  Are you sure you want to continue?
+                  <div id="confirmation" class="gap">
+                    <div class="confirmationChoice">NO</div>
+                    <button class="confirmationChoice" id="productAddButton">
+                      YES
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <div id="userButtons" class="gap">
+                <div id="searchPhoto2" class="centerAlign gap">
+                  <svg
+                    class="icon"
+                    id="buttonIcon"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                  >
+                    <path
+                      class="top"
+                      d="M22.0206 16.8198L18.8906 9.49978C18.3206 8.15978 17.4706 7.39978 16.5006 7.34978C15.5406 7.29978 14.6106 7.96978 13.9006 9.24978L12.0006 12.6598C11.6006 13.3798 11.0306 13.8098 10.4106 13.8598C9.78063 13.9198 9.15063 13.5898 8.64063 12.9398L8.42063 12.6598C7.71063 11.7698 6.83063 11.3398 5.93063 11.4298C5.03063 11.5198 4.26063 12.1398 3.75063 13.1498L2.02063 16.5998C1.40063 17.8498 1.46063 19.2998 2.19063 20.4798C2.92063 21.6598 4.19063 22.3698 5.58063 22.3698H18.3406C19.6806 22.3698 20.9306 21.6998 21.6706 20.5798C22.4306 19.4598 22.5506 18.0498 22.0206 16.8198Z"
+                    />
+                    <path
+                      class="bottom"
+                      d="M6.96984 8.38012C8.83657 8.38012 10.3498 6.86684 10.3498 5.00012C10.3498 3.13339 8.83657 1.62012 6.96984 1.62012C5.10312 1.62012 3.58984 3.13339 3.58984 5.00012C3.58984 6.86684 5.10312 8.38012 6.96984 8.38012Z"
+                    />
+                  </svg>
+                  <span class="text buttonText">Choose Photo</span>
+                </div>
+                <div id="formButton2" class="centerAlign gap">
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    class="icon"
+                    id="buttonIcon"
+                  >
+                    <path
+                      class="top"
+                      d="M19.24 5.58006H18.84L15.46 2.20006C15.19 1.93006 14.75 1.93006 14.47 2.20006C14.2 2.47006 14.2 2.91006 14.47 3.19006L16.86 5.58006H7.14L9.53 3.19006C9.8 2.92006 9.8 2.48006 9.53 2.20006C9.26 1.93006 8.82 1.93006 8.54 2.20006L5.17 5.58006H4.77C3.87 5.58006 2 5.58006 2 8.14006C2 9.11006 2.2 9.75006 2.62 10.1701C2.86 10.4201 3.15 10.5501 3.46 10.6201C3.75 10.6901 4.06 10.7001 4.36 10.7001H19.64C19.95 10.7001 20.24 10.6801 20.52 10.6201C21.36 10.4201 22 9.82006 22 8.14006C22 5.58006 20.13 5.58006 19.24 5.58006Z"
+                    />
+                    <path
+                      class="bottom"
+                      d="M19.6509 10.7001H4.36094C4.06094 10.7001 3.75094 10.6901 3.46094 10.6201L4.72094 18.3001C5.00094 20.0201 5.75094 22.0001 9.08094 22.0001H14.6909C18.0609 22.0001 18.6609 20.3101 19.0209 18.4201L20.5309 10.6201C20.2509 10.6801 19.9509 10.7001 19.6509 10.7001ZM10.6109 17.1601C10.6109 17.5501 10.3009 17.8601 9.91094 17.8601C9.52094 17.8601 9.21094 17.5501 9.21094 17.1601V13.8601C9.21094 13.4701 9.52094 13.1601 9.91094 13.1601C10.3009 13.1601 10.6109 13.4701 10.6109 13.8601V17.1601ZM14.8909 17.1601C14.8909 17.5501 14.5809 17.8601 14.1909 17.8601C13.8009 17.8601 13.4909 17.5501 13.4909 17.1601V13.8601C13.4909 13.4701 13.8009 13.1601 14.1909 13.1601C14.5809 13.1601 14.8909 13.4701 14.8909 13.8601V17.1601Z"
+                    />
+                  </svg>
+                  <span class="text buttonText" id="buttonTextForm2"
+                    >Add Product</span
+                  >
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </container>
+    </section>
+    <script src="{% static 'frontend/js/math.js' %}"></script>
+    <script src="{% static 'frontend/js/jquery-3.7.1.min.js' %}"></script>
+    <script src="{% static 'frontend/js/animation.js' %}"></script>
+    <script src="{% static 'frontend/js/backend.js' %}"></script>
+  </body>
+</html>
