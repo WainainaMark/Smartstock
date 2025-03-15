@@ -94,7 +94,7 @@ def addSales(request):
 
 
 def addSupplier(request):
-    print(request.POST
+    print(request.POST)
     Supplier.objects.create(
         supplier_name = request.POST.get('supplierName'),
         supplier_title = request.POST.get('supplierTitle'),
