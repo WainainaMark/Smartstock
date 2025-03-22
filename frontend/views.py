@@ -108,29 +108,4 @@ def addSupplier(request):
     return render(request, 'frontend/frontend.html')
     
 
-def downloadImage(request):
-    image_url = request.GET.get("image_url")  # Get the URL from AJAX request
 
-    if not image_url:
-        return JsonResponse({"message": "No image URL provided"}, status=400)
-
-    response = requests.get(image_url)
-
-    if response.status_code == 200:
-        response = requests.get(image_url, stream=True)
-        response.raise_for_status()  # Ensure successful response
-
-        # Extract clean filename
-        parsed_url = urlparse(image_url)
-        filename = os.path.basename(
-            parsed_url.path
-        )  # Get only the last part (without query params)
-        filename = unquote(filename)
-
-        fakeTest = Product()
-
-        fakeTest.product_photo.save(filename, ContentFile(response.content), save=True)
-
-        return JsonResponse({"message": "Image downloaded and saved successfully!"})
-
-    return JsonResponse({"message": "Failed to download image"}, status=400)
