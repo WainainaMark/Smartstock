@@ -1,7 +1,7 @@
 $(document).ready(function () {
     $("#container").fadeIn()
     setTimeout(()=>{
-        $('#serviceAddContainer').fadeIn()
+        $('#productAddContainer').fadeIn()
     },500)
     $('#searchPhoto').click(function () {
       $('#confirmationBox').fadeOut()
