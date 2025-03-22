@@ -127,10 +127,6 @@ def downloadImage(request):
         )  # Get only the last part (without query params)
         filename = unquote(filename)
 
-        fakeTest = FakeDatabase()
-
-        fakeTest.photo.save(filename, ContentFile(response.content), save=True)
-
         return JsonResponse({"message": "Image downloaded and saved successfully!"})
 
     return JsonResponse({"message": "Failed to download image"}, status=400)
