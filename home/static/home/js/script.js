@@ -212,14 +212,14 @@ const featuresContainer = document.getElementById("features");
 const reportBoxes = document.querySelectorAll(".reportBox");
 const homeContainer = document.getElementById("features");
 const days = Array.from(document.querySelectorAll('.day'))
-const date = new Date()
-const dayNumber = date.getDay() - 1
-console.log(dayNumber)
+// const date = new Date()
+// const dayNumber = date.getDay() - 1
+// console.log(dayNumber)
 
-days[dayNumber].style.backgroundColor = "#34352c"
-days[dayNumber+7].style.backgroundColor = "#34352c"
-days[dayNumber+14].style.backgroundColor = "#34352c"
-days[dayNumber+21].style.backgroundColor = "#34352c"
+// days[dayNumber].style.backgroundColor = "#34352c"
+// days[dayNumber+7].style.backgroundColor = "#34352c"
+// days[dayNumber+14].style.backgroundColor = "#34352c"
+// days[dayNumber+21].style.backgroundColor = "#34352c"
 
 
 

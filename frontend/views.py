@@ -7,6 +7,10 @@ import os, json
 from urllib.parse import urlparse, unquote
 
 # Create your views here.
+def landingPage(request):
+    return render(request, 'frontend/home.html')
+
+
 def frontend(request):
 
     if request.method == "POST":

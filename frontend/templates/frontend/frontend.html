@@ -25,6 +25,22 @@
             </svg>
             <span class="text sidebarText"> Add Product </span>
           </div>
+          <div class="choice centerAlign" id="serviceAddChoice">
+            <svg viewBox="0 0 24 24" fill="none" class="icon">
+              <path
+                class="top"
+                d="M7 4.82936C7 6.37714 8.72593 8.00761 10.1497 9.08932C10.9489 9.69644 11.3484 10 12 10C12.6516 10 13.0512 9.69644 13.8503 9.08933C15.2741 8.00763 17 6.37717 17 4.82935C17 2.03918 14.2499 0.997463 12 3.15285C9.75008 0.997463 7 2.03918 7 4.82936Z"
+                fill="#1C274C"
+              />
+              <path
+                opacity="0.5"
+                class="bottom"
+                d="M6.25993 21.3884H6C5.05719 21.3884 4.58579 21.3884 4.29289 21.0955C4 20.8026 4 20.3312 4 19.3884V18.2764C4 17.7579 4 17.4987 4.13318 17.2672C4.26636 17.0356 4.46727 16.9188 4.8691 16.6851C7.51457 15.1464 11.2715 14.2803 13.7791 15.7759C13.9475 15.8764 14.0991 15.9977 14.2285 16.1431C14.7866 16.77 14.746 17.7161 14.1028 18.2775C13.9669 18.396 13.8222 18.486 13.6764 18.5172C13.7962 18.5033 13.911 18.4874 14.0206 18.4699C14.932 18.3245 15.697 17.8375 16.3974 17.3084L18.2046 15.9433C18.8417 15.462 19.7873 15.4619 20.4245 15.943C20.9982 16.3762 21.1736 17.0894 20.8109 17.6707C20.388 18.3487 19.7921 19.216 19.2199 19.7459C18.6469 20.2766 17.7939 20.7504 17.0975 21.0865C16.326 21.4589 15.4738 21.6734 14.6069 21.8138C12.8488 22.0983 11.0166 22.0549 9.27633 21.6964C8.29253 21.4937 7.27079 21.3884 6.25993 21.3884Z"
+                fill="#1C274C"
+              />
+            </svg>
+            <span class="text sidebarText">Add Service</span>
+          </div>
           <div class="choice centerAlign" id="supplierAddChoice">
             <svg viewBox="0 0 24 24" fill="none" class="icon">
               <path
@@ -39,6 +55,7 @@
             </svg>
             <span class="text sidebarText"> Add Supplier </span>
           </div>
+
           <div id="settings" class="centerAlign">
             <svg viewBox="0 0 24 24" fill="none" class="icon">
               <path
@@ -331,6 +348,67 @@
             </div>
           </form>
         </div>
+        <!-- Service Form -->
+        <div id="serviceAddContainer">
+          <form id="serviceForm" class="form" method="post">
+            {% csrf_token %}
+            <input hidden name="form_type" name="serviceAddForm" />
+            <span class="text formHeader"> Add Service to SmartStock</span>
+            <hr />
+            <div id="serviceAdd">
+              <div class="inputContainer">
+                <div id="serviceDetails" class="grid2">
+                  <div class="col inputBox gap marginRight">
+                    <label for="serviceName" class="text">
+                      Name of Service
+                    </label>
+                    <input type="text" name="serviceName" />
+                    <span class="text descriptionText">
+                      The none Tangible things you offer
+                    </span>
+                  </div>
+                  <div class="col upCont" style="gap: 8px">
+                    <label for="serviceCharge" class="text">
+                      How much do you charge for the service?</label
+                    >
+                    <input type="text" name="serviceCharge" />
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div id="actions" class="col gap">
+              <span class="text descriptionText"> Optional </span>
+              <div id="choose1">
+                <div class="choices" id="confirmationBox2">
+                  Are you sure you want to continue?
+                  <div id="confirmation" class="gap">
+                    <div class="confirmationChoice">NO</div>
+                    <button class="confirmationChoice" id="productAddButton">
+                      YES
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <div id="userButtons" class="gap">
+                <div id="formButton2" class="centerAlign gap">
+                  <svg viewBox="0 0 24 24" fill="none" class="icon" id="buttonIcon">
+                    <path
+                      opacity="0.4"
+                      class="top"
+                      d="M12 2C9.38 2 7.25 4.13 7.25 6.75C7.25 9.32 9.26 11.4 11.88 11.49C11.96 11.48 12.04 11.48 12.1 11.49C12.12 11.49 12.13 11.49 12.15 11.49C12.16 11.49 12.16 11.49 12.17 11.49C14.73 11.4 16.74 9.32 16.75 6.75C16.75 4.13 14.62 2 12 2Z"
+                    />
+                    <path
+                      class="bottom"
+                      d="M17.0809 14.1499C14.2909 12.2899 9.74094 12.2899 6.93094 14.1499C5.66094 14.9999 4.96094 16.1499 4.96094 17.3799C4.96094 18.6099 5.66094 19.7499 6.92094 20.5899C8.32094 21.5299 10.1609 21.9999 12.0009 21.9999C13.8409 21.9999 15.6809 21.5299 17.0809 20.5899C18.3409 19.7399 19.0409 18.5999 19.0409 17.3599C19.0309 16.1299 18.3409 14.9899 17.0809 14.1499Z"
+                    />
+                  </svg>
+                  <span class="text buttonText" id="buttonTextForm">Add Service</span
+                  >
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
         <!-- Supplier Form -->
         <div id="supplierAddContainer">
           <form id="supplierForm" class="form" method="post">
@@ -457,7 +535,7 @@
                     </span>
                   </div>
                 </div>
-                <div class="choices" id="confirmationBox2">
+                <div class="choices" id="confirmationBox3">
                   Are you sure you want to continue?
                   <div id="confirmation" class="gap">
                     <div class="confirmationChoice">NO</div>
@@ -486,7 +564,7 @@
                   </svg>
                   <span class="text buttonText">Choose Photo</span>
                 </div>
-                <div id="formButton2" class="centerAlign gap">
+                <div id="formButton3" class="centerAlign gap">
                   <svg
                     viewBox="0 0 24 24"
                     fill="none"
@@ -502,8 +580,8 @@
                       d="M19.6509 10.7001H4.36094C4.06094 10.7001 3.75094 10.6901 3.46094 10.6201L4.72094 18.3001C5.00094 20.0201 5.75094 22.0001 9.08094 22.0001H14.6909C18.0609 22.0001 18.6609 20.3101 19.0209 18.4201L20.5309 10.6201C20.2509 10.6801 19.9509 10.7001 19.6509 10.7001ZM10.6109 17.1601C10.6109 17.5501 10.3009 17.8601 9.91094 17.8601C9.52094 17.8601 9.21094 17.5501 9.21094 17.1601V13.8601C9.21094 13.4701 9.52094 13.1601 9.91094 13.1601C10.3009 13.1601 10.6109 13.4701 10.6109 13.8601V17.1601ZM14.8909 17.1601C14.8909 17.5501 14.5809 17.8601 14.1909 17.8601C13.8009 17.8601 13.4909 17.5501 13.4909 17.1601V13.8601C13.4909 13.4701 13.8009 13.1601 14.1909 13.1601C14.5809 13.1601 14.8909 13.4701 14.8909 13.8601V17.1601Z"
                     />
                   </svg>
-                  <span class="text buttonText" id="buttonTextForm2"
-                    >Add Product</span
+                  <span class="text buttonText"
+                    >Add Supplier</span
                   >
                 </div>
               </div>

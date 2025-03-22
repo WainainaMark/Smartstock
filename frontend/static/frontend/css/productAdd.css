@@ -275,7 +275,7 @@ container {
   opacity: 0.6;
 }
 
-#productAddContainer, #supplierAddContainer{
+#productAddContainer, #supplierAddContainer, #serviceAddContainer{
   height: 100%;
   display: none;
 }
@@ -363,9 +363,10 @@ input:focus, select:focus, #productDescriptionInput:focus{
   position: absolute;
   bottom: 0;
   right: 0;
+  display: flex
 }
 #searchPhoto, #formButton,
-#searchPhoto2, #formButton2 {
+#searchPhoto2, #formButton2, #formButton3 {
   position: relative;
   height: 40px;
   width: max-content;
@@ -378,8 +379,7 @@ input:focus, select:focus, #productDescriptionInput:focus{
   cursor: pointer;
   transition: all 0.3s ease-in-out;
 }
-
-#choose, #choose2{
+#choose, #choose1, #choose2{
   height: 100px;
   margin-bottom: 10px;
   border: 5px solid var(--container-color);
@@ -394,7 +394,7 @@ input:focus, select:focus, #productDescriptionInput:focus{
   height: 100%;
 }
 
-#confirmationBox, #confirmationBox2{
+#confirmationBox, #confirmationBox2, #confirmationBox3{
   flex-direction: column;
   align-items: center;
   font-size: 16px;
@@ -436,6 +436,7 @@ input:focus, select:focus, #productDescriptionInput:focus{
 
 #userButtons{
   display: flex;
+  align-self: end;
 }
 
 
@@ -454,7 +455,9 @@ input:focus, select:focus, #productDescriptionInput:focus{
   display: none;
 }
 
-button:hover #buttonIcon,
+#formButton:hover #buttonIcon,
+#formButton2:hover #buttonIcon,
+#formButton3:hover #buttonIcon,
 #searchPhoto:hover #buttonIcon,
 #searchPhoto2:hover #buttonIcon,
 .photoChoice:hover .icon{

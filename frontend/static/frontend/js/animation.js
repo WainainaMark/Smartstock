@@ -1,7 +1,7 @@
 $(document).ready(function () {
     $("#container").fadeIn()
     setTimeout(()=>{
-        $('#supplierAddContainer').fadeIn()
+        $('#serviceAddContainer').fadeIn()
     },500)
     $('#searchPhoto').click(function () {
       $('#confirmationBox').fadeOut()
@@ -12,7 +12,7 @@ $(document).ready(function () {
         }, 500)
     });
     $("#searchPhoto2").click(function () {
-      $("#confirmationBox2").fadeOut();
+      $("#confirmationBox3").fadeOut();
       $("#choose2").fadeIn();
       setTimeout(() => {
         $("#chooseBox2").css("display", "grid");
@@ -22,17 +22,24 @@ $(document).ready(function () {
 
     $("#productAddChoice").click(function(){
       $('#container > *').not('#productAddContainer').fadeOut(function(){
-        $("#productAddContainer").fadeIn()
+        setTimeout(()=>{$("#productAddContainer").fadeIn()},500)
+      })
+    })
+    $('#serviceAddChoice').click(function(){
+      $('#container > *').not('#serviceAddContainer').fadeOut(function(){
+        setTimeout(()=>{$("#serviceAddContainer").fadeIn()},500)
+        
       })
     })
     $('#supplierAddChoice').click(function(){
       $('#container > *').not('#supplierAddContainer').fadeOut(function(){
-        $("#supplierAddContainer").fadeIn()
+        setTimeout(()=>{$("#supplierAddContainer").fadeIn()},500)
+        
       })
     })
 
+
     $('#formButton').click(function(){
-      $('#buttonTextForm').html("Refresh")
       $('#chooseBox').fadeOut()
       $('#choose').fadeIn()
       setTimeout(()=>{
@@ -42,12 +49,19 @@ $(document).ready(function () {
     })
 
     $("#formButton2").click(function () {
-      $("#buttonTextForm2").html("Refresh");
-      $("#chooseBox2").fadeOut();
-      $("#choose2").fadeIn();
+      $("#choose1").fadeIn();
       setTimeout(() => {
         $("#confirmationBox2").css("display", "flex");
         $("#confirmationBox2").fadeIn();
+      }, 500);
+    });
+
+    $("#formButton3").click(function () {
+      $("#chooseBox2").fadeOut();
+      $("#choose2").fadeIn();
+      setTimeout(() => {
+        $("#confirmationBox3").css("display", "flex");
+        $("#confirmationBox3").fadeIn();
       }, 500);
     });
 

@@ -53,9 +53,6 @@ class Manufacturer(models.Model):
     manufacturer_name = models.CharField(max_length=100)
 
 
-class FakeDatabase(models.Model):
-    photo = models.FileField(upload_to='media/productPhoto')
-
 #The main database for the products
 class Product(models.Model):
     product_id = models.AutoField(primary_key=True)  # The productDb automatically creates this
