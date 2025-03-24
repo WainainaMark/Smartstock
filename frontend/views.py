@@ -3,7 +3,7 @@ from django.shortcuts import render
 from backend.models import *
 from django.core.files.base import ContentFile
 import requests
-import os, json
+import os, random
 from urllib.parse import urlparse, unquote
 
 # Create your views here.
@@ -106,6 +106,15 @@ def addSupplier(request):
         supplier_location = request.POST.get('supplierLocation')
     )
     return render(request, 'frontend/frontend.html')
-    
 
 
+def chart_data(request):
+    data = {
+        "labels": ["January", "February", "March", "April", "May"],
+        "values": [random.randint(10, 100) for _ in range(5)],
+    }
+    return JsonResponse(data)  # Returns JSON data for Chart.js
+
+
+def graph_page(request):
+    return render(request, "frontend/graph.html")
