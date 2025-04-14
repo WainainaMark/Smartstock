@@ -124,12 +124,7 @@
             </div>
             <div class="productAddInputParent">
               <span>A brief description of the product</span>
-              <!-- <input
-                type="text"
-                class="productAddInput"
-                id="productDescription"
-                name="productDescription"
-              /> -->
+              
               <div id="productDescription" contenteditable="true" spellcheck="true" tabindex="0"></div>
             </div>
           </div>
@@ -215,7 +210,7 @@
               </table>
             </div>
           </div>
-          <button id="productAddButton" type="submit">Add Product</button>
+          <div id="productAddButton" type="submit">Add Product</div>
         </div>
       </form>
     </div>
@@ -223,13 +218,7 @@
       <div id="sectionContainer">
         <div class="Title">
           <div id="content">
-            <!-- <img
-              src="{% static 'home/images/menuIcon.svg' %}"
-              alt="Menu Icon"
-              id="menuIcon"
-              onclick="toggleSidebar()"
-            /> -->
-            <!-- V1.0 feature, removed menu icon -->
+            
             <span id="heading">SmartStock</span>
             <div id="search">
               <input type="name" placeholder="search" id="searchInput" />
@@ -502,7 +491,9 @@
                             class="userActionForm"
                             id="productOrderQuantity"
                           />
-                          <div id="productQuantityDynamic"></div>
+                          <div id="productQuantityDynamic">
+                            <div id="pqdChild"></div>
+                          </div>
                         </div>
                         <select name="supplierName" class="userActionForm">
                           <option disabled selected>Choose A supplier</option>

@@ -58,7 +58,7 @@ class Product(models.Model):
     product_id = models.AutoField(primary_key=True)  # The productDb automatically creates this
     product_name = models.CharField(max_length=100)  # The name of the product
     product_description = models.TextField()  # A brief description of the product
-    product_manufacturer = models.ForeignKey(Manufacturer, on_delete=models.CASCADE, default=None) #Stores the name of the manufacturer here
+    product_manufacturer = models.ForeignKey(Manufacturer, on_delete=models.CASCADE, default=None,null=True) #Stores the name of the manufacturer here
     category_id = models.ForeignKey(Category, on_delete=models.CASCADE)  # Stores the id of the category to be referenced later in the Category DB
     unit_id = models.ForeignKey(Unit, on_delete=models.CASCADE)  # What measuring unit is used for this type of product, its populated from Unit Model
     product_cost = models.DecimalField(max_digits=10, decimal_places=2, editable=False, default=0)  # The product_cost is updated from the OrderItem DB, the buying cost
@@ -225,6 +225,6 @@ class Expenses(models.Model):
 
 class Stock(models.Model): #Stores the details of the remaining stock in the business
     stock_id = models.AutoField(primary_key=True)
-    product_id = models.ForeignKey(Product, on_delete=models.CASCADE)
+    product_id = models.ForeignKey(Product, on_delete=models.CASCADE, db_index=True)
     stock_amount = models.IntegerField() #Stores the latest data about the stock
     stock_changed_date = models.DateTimeField(auto_now_add=True) #Stores the date when stock was changed

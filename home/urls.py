@@ -4,4 +4,6 @@ from . import views
 urlpatterns = [
     path('', views.homepage, name="homepage"),
     path('dynamicData', views.dynamicData, name="dynamicData"),
+    path('/addProduct', views.addProduct, name="addProduct"),
+    path('/productFetch', views.productFetch, name="productFetch")
 ]

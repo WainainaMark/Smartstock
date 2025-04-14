@@ -1,62 +1,105 @@
-$(document).ready(function(){
-    $("#productOrderName").change(function(){
-        var productId = $(this).val();
+$(document).ready(function () {
+  csrf_token = document.querySelector("[name=csrfmiddlewaretoken]").value;
 
-        if (productId) {
-            $.ajax({
-                url: dynamicDataUrl,
-                data: { product_id: productId },
-                dataType: "json",
-                success: function(response) {
-                    $("#productQuantityDynamic").text(response.quantity);
-                },
-                error: function() {
-                    $("#productQuantityDynamic").text("Select A Product");
-                }
-            });
-        } else {
-            $("#productQuantityDynamic").text("0");
-        }
-    });
+  function getProduct(element) {
+    let productId = $(element).val();
+    if (productId != "Add a product") {
+      console.log(productId);
+      formData = new FormData();
+      formData.append("product", productId);
+      formData.append("csrfmiddlewaretoken", csrf_token);
 
-    $("#productStockName").change(function(){
-        var productId = $(this).val();
-
-        if (productId) {
-          $.ajax({
-            url: dynamicDataUrl,
-            data: { product_id: productId },
-            dataType: "json",
-            success: function (response) {
-              $("#productInfo").text(response.quantity);
-            },
-            error: function () {
-              $("#productInfo").text("Select A product");
-            },
-          });
-        } else {
-          $("#productInfo").text("0");
-        }
-    })
-
-    $("#productSaleName").change(function () {
-      var productId = $(this).val();
-
-      if (productId) {
-        $.ajax({
-          url: dynamicDataUrl,
-          data: { product_id: productId },
-          dataType: "json",
-          success: function (response) {
-            $("#salesStockQuantity").text(response.quantity);
-          },
-          error: function () {
-            $("#salesStockQuantity").text("Select A product");
-          },
+      fetch("home/productFetch", {
+        method: "POST",
+        body: formData,
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          $("#pqdChild").html(data.product)
+          $("productQuantityDynamic").fadeIn()
+          console.log(data.product);
         });
-      } else {
-        $("#salesStockQuantity").text("0");
-      }
+    }
+  }
+  $("#productOrderName").change(function () {
+    getProduct(this);
+  });
+
+  $('#productSaleName').click(function(e){
+    e.preventDefault
+  })
+
+  $("#productStockName").change(function () {
+    var productId = $(this).val();
+
+    if (productId) {
+      $.ajax({
+        url: dynamicDataUrl,
+        data: { product_id: productId },
+        dataType: "json",
+        success: function (response) {
+          $("#productInfo").text(response.quantity);
+        },
+        error: function () {
+          $("#productInfo").text("Select A product");
+        },
+      });
+    } else {
+      $("#productInfo").text("0");
+    }
+  });
+
+  $("#productSaleName").change(function () {
+    var productId = $(this).val();
+
+    if (productId) {
+      $.ajax({
+        url: dynamicDataUrl,
+        data: { product_id: productId },
+        dataType: "json",
+        success: function (response) {
+          $("#salesStockQuantity").text(response.quantity);
+        },
+        error: function () {
+          $("#salesStockQuantity").text("Select A product");
+        },
+      });
+    } else {
+      $("#salesStockQuantity").text("0");
+    }
+  });
+
+  document
+    .getElementById("productAddButton")
+    .addEventListener("click", function () {
+      let formData = new FormData();
+
+      formData.append("productName", $("#productAddName").val());
+      formData.append("productDescription", $("#productDescription").html());
+      formData.append("productUnits", $("#productUnit").val());
+      formData.append("productCategory", $("#productCategory").val());
+      formData.append("productCost", $("#productCost").val());
+      formData.append("productPrice", $("#productCreationPrice").val());
+      formData.append("productStock", $("#productInitialQuantity").val());
+      formData.append("csrfmiddlewaretoken", csrf_token);
+
+      fetch("home/addProduct", {
+        method: "POST",
+        body: formData,
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          console.log("Success:", data);
+          fetch("home/refreshProducts", {
+            method: "POST",
+          }).then((data) => {
+            const product = document.createElement(div);
+          });
+        })
+        .catch((error) => {
+          console.error("Error:", error);
+        });
     });
 
+  document.getElementById;
 });

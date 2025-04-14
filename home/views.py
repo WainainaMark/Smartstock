@@ -29,41 +29,44 @@ def homepage(request):
 
     return render(request, 'home/home.html')
 
+def productFetch(request):
+    product = request.POST.get("product")
+    productObject = Product.objects.get(product_name = product)
+    stockAmount = Stock.objects.filter(product_id = productObject).latest("stock_changed_date")
+    print(stockAmount)
+    return JsonResponse({"product": stockAmount.stock_amount }, safe=False)
+
 def addProduct(request):
-       
-    # ProductAddForm
-    product_name = request.POST.get('productAddName')
-    product_photo = request.FILES.get('productPhoto')
-    product_description = request.POST.get('productDescription')
-    category_id = request.POST.get('productCategory')
-    unit_id = request.POST.get('productUnit')
-    product_cost = request.POST.get('productCost')
-    product_price = request.POST.get('productCreationPrice')
-    product_quantity = request.POST.get('productInitialQuantity')
-    
-    # Fetch the related objects
-    category = Category.objects.get(category_name=category_id)
-    unit = Unit.objects.get(unit_of_measurement=unit_id)
-    # Create the product
-    Product.objects.create(
-        product_name=product_name,
-        product_photo=product_photo,
-        product_description=product_description,
-        category_id=category,
-        unit_id=unit,
-        product_cost=product_cost,
-        product_price=product_price
-    )
-    
-    product_sale_reference_name = Product.objects.get(product_name=product_name)
-    
-    Stock.objects.create(
-        product_id = product_sale_reference_name,
-        stock_amount = product_quantity
-    )
-    
-    
-    return render(request, "home/home.html")
+    if request.method == "POST":
+        product_name = request.POST.get("productName")
+        product_description = request.POST.get("productDescription")
+        product_units = request.POST.get("productUnits")
+        product_category = request.POST.get("productCategory")
+        product_cost = request.POST.get("productCost")
+        product_price = request.POST.get("productPrice")
+        product_stock = request.POST.get("productStock")
+
+        # Fetch the related objects
+        category = Category.objects.get(category_name=product_category)
+        unit = Unit.objects.get(unit_of_measurement=product_units)
+        # Create the product
+        Product.objects.create(
+            product_name=product_name,
+            product_description=product_description,
+            category_id=category,
+            unit_id=unit,
+            product_cost=product_cost,
+            product_price=product_price
+        )
+
+        product_sale_reference_name = Product.objects.get(product_name=product_name)
+
+        Stock.objects.create(
+            product_id = product_sale_reference_name,
+            stock_amount = product_stock
+        )
+
+        return JsonResponse({"product": product_name})
 
 def addOrder(request):
     #Adds order to the models and records Transaction
@@ -128,7 +131,6 @@ def addOrder(request):
         'success': success
         }
     return render(request, 'home/home.html', backendData)
-
 
 
 def addSales(request):
@@ -209,5 +211,3 @@ def dynamicData(request):
         })
     
     return JsonResponse({"error": "Product not found"}, status=404)
-
-

@@ -32,7 +32,8 @@ def frontend(request):
 
     return render(request, "frontend/frontend.html")
 
-def addSales(request):
+def addProduct(request):
+    if request.method == "POST":
         productName = request.POST.get("productAdd")
         productUnit = request.POST.get("productUnit")
         productCategory = request.POST.get('productCategory')

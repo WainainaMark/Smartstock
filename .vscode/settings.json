@@ -7,6 +7,12 @@
             "name": "Backend",
             "group": "Backend",
             "database": "db.sqlite3"
+        },
+        {
+            "previewLimit": 50,
+            "driver": "SQLite",
+            "name": "SmartStock",
+            "database": "db.sqlite3"
         }
     ]
 }
