@@ -15,8 +15,8 @@ $(document).ready(function () {
       })
         .then((response) => response.json())
         .then((data) => {
-          $(".pqdChild").html(data.product)
-          $("productQuantityDynamic").fadeIn()
+          $(".pqdChild").html(data.product);
+          $("productQuantityDynamic").fadeIn();
           // console.log(data.product);
         });
     }
@@ -46,8 +46,7 @@ $(document).ready(function () {
   });
 
   $("#productSaleName").change(function () {
-
-    getProduct(this)
+    getProduct(this);
     // var productId = $(this).val();
 
     // if (productId) {
@@ -65,6 +64,26 @@ $(document).ready(function () {
     // } else {
     //   $("#salesStockQuantity").text("0");
     // }
+  });
+
+  $("#MachineLearnBtn").click(function () {
+    let productId = $("#productLearningName").val();
+    console.log(productId)
+    formData = new FormData();
+    formData.append("product", productId);
+    formData.append("csrfmiddlewaretoken", csrf_token);
+
+    fetch("home/learn", {
+      method: "POST",
+      body: formData
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        $("#machineResponse").html(`
+          <span>📦 Product: ${data.product}</span>
+          <p>🧮 Next Predicted Sales: ${data.total_predicted}</p>
+        `);
+      });
   });
 
   document

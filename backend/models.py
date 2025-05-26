@@ -61,7 +61,7 @@ class Product(models.Model):
     product_manufacturer = models.ForeignKey(Manufacturer, on_delete=models.CASCADE, default=None,null=True) #Stores the name of the manufacturer here
     category_id = models.ForeignKey(Category, on_delete=models.CASCADE)  # Stores the id of the category to be referenced later in the Category DB
     unit_id = models.ForeignKey(Unit, on_delete=models.CASCADE)  # What measuring unit is used for this type of product, its populated from Unit Model
-    product_cost = models.DecimalField(max_digits=10, decimal_places=2, editable=False, default=0)  # The product_cost is updated from the OrderItem DB, the buying cost
+    product_cost = models.DecimalField(max_digits=10, decimal_places=2, editable=False, default=None)  # The product_cost is updated from the OrderItem DB, the buying cost
     product_price = models.DecimalField(max_digits=10, decimal_places=2)  # The selling price of the product, it is set by the user
     product_photo = models.FileField(upload_to="uploads/productPhoto")
     
@@ -104,7 +104,7 @@ class Order(models.Model):
     expected_date = models.DateField()  # The date the order is expected to arrive
     order_status = models.CharField(max_length=30, choices=ORDER_STATUS_CHOICES, default='PENDING')  # The status of the order
     order_quantity = models.IntegerField(default=0)  # Shows the number of items ordered! Updated from OrderItem Db
-    order_total_price = models.DecimalField(max_digits=10, decimal_places=2, default=0)  # The total price for the order! Updated from sum of orderItems
+    order_total_price = models.DecimalField(max_digits=10, decimal_places=2, default=None)  # The total price for the order! Updated from sum of orderItems
     
     def __str__(self):
         return f"Order #{self.order_number}"

@@ -5,7 +5,7 @@ from django.http import JsonResponse
 from datetime import datetime
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from backend.utils import learn
+from backend.utils import learn, insertData
 
 # Create your views here.
 @login_required
@@ -140,7 +140,7 @@ def addSales(request):
     product_sale_quantity = request.POST.get("productSaleQuantity")  
     product_payment_method = request.POST.get("purchaseMethod")
     
-    learn(product_sale_name)
+    insertData(product_sale_name)
 
     product_sale_reference_name = Product.objects.get(product_name=product_sale_name)
     stock_reference_name = Stock.objects.filter(product_id = product_sale_reference_name.product_id).latest('stock_changed_date')
@@ -215,3 +215,11 @@ def dynamicData(request):
         })
     
     return JsonResponse({"error": "Product not found"}, status=404)
+
+
+def modelLearn(request):
+    product_name = request.POST.get("product")
+    print(product_name)
+    result = learn(product_name)
+    
+    return JsonResponse(result)

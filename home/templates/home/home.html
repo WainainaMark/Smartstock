@@ -394,6 +394,21 @@
                 <div id="sightBoxes">
                   <div class="userBoxes">
                     <span class="text"> AI Recommendations</span>
+                    <div id="MLearningBox">
+                      <div id="MachineOutput"> Choose the product you want to predict </div>
+                      <select
+                          name="productLearningName"
+                          class="userActionForm"
+                          id="productLearningName"
+                        >
+                          <option disabled selected>Choose A product</option>
+                          {% for product in products %}
+                          <option>{{ product.product_name }}</option>
+                          {% endfor %}
+                      </select>
+                      <div id="MachineLearnBtn">Predict Sales</div>
+                      <div id="machineResponse"></div>
+                    </div>
                   </div>
                   <div class="userBoxes" id="transactionContainer">
                     <span class="text"> Transactions </span>
