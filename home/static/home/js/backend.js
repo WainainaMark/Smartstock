@@ -15,19 +15,15 @@ $(document).ready(function () {
       })
         .then((response) => response.json())
         .then((data) => {
-          $("#pqdChild").html(data.product)
+          $(".pqdChild").html(data.product)
           $("productQuantityDynamic").fadeIn()
-          console.log(data.product);
+          // console.log(data.product);
         });
     }
   }
   $("#productOrderName").change(function () {
     getProduct(this);
   });
-
-  $('#productSaleName').click(function(e){
-    e.preventDefault
-  })
 
   $("#productStockName").change(function () {
     var productId = $(this).val();
@@ -50,23 +46,25 @@ $(document).ready(function () {
   });
 
   $("#productSaleName").change(function () {
-    var productId = $(this).val();
 
-    if (productId) {
-      $.ajax({
-        url: dynamicDataUrl,
-        data: { product_id: productId },
-        dataType: "json",
-        success: function (response) {
-          $("#salesStockQuantity").text(response.quantity);
-        },
-        error: function () {
-          $("#salesStockQuantity").text("Select A product");
-        },
-      });
-    } else {
-      $("#salesStockQuantity").text("0");
-    }
+    getProduct(this)
+    // var productId = $(this).val();
+
+    // if (productId) {
+    //   $.ajax({
+    //     url: dynamicDataUrl,
+    //     data: { product_id: productId },
+    //     dataType: "json",
+    //     success: function (response) {
+    //       $("#salesStockQuantity").text(response.quantity);
+    //     },
+    //     error: function () {
+    //       $("#salesStockQuantity").text("Select A product");
+    //     },
+    //   });
+    // } else {
+    //   $("#salesStockQuantity").text("0");
+    // }
   });
 
   document

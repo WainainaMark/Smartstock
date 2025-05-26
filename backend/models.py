@@ -144,9 +144,9 @@ class Transactions(models.Model):
     order_id = models.ForeignKey(OrderItem, on_delete=models.SET_NULL, null=True, blank=True)  # Optional reference to an order
     transaction_payment_method = models.CharField(max_length=10)
     
-    def __str__(self):
-        action = "added to" if self.transaction_amount > 0 else "removed from"
-        return f"{abs(self.transaction_amount)} {self.product_id.product_name} {action} inventory - {self.transaction_type}"
+    # def __str__(self):
+    #     action = "added to" if self.transaction_amount > 0 else "removed from"
+    #     return f"{abs(self.transaction_amount)} {self.product_id.product_name} {action} inventory - {self.transaction_type}"
     
     @classmethod
     def record_sale(cls, product, quantity, order=None):

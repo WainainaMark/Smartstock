@@ -5,7 +5,7 @@ from django.http import JsonResponse
 from datetime import datetime
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-
+from backend.utils import learn
 
 # Create your views here.
 @login_required
@@ -124,6 +124,7 @@ def addOrder(request):
     )
     stock_reference_name = Stock.objects.filter(product_id = product_order_ref_name.product_id).latest('stock_changed_date')
     
+
     
     backendData = {
         "product_name": product_order_name,
@@ -139,6 +140,8 @@ def addSales(request):
     product_sale_quantity = request.POST.get("productSaleQuantity")  
     product_payment_method = request.POST.get("purchaseMethod")
     
+    learn(product_sale_name)
+
     product_sale_reference_name = Product.objects.get(product_name=product_sale_name)
     stock_reference_name = Stock.objects.filter(product_id = product_sale_reference_name.product_id).latest('stock_changed_date')
     print(stock_reference_name.stock_amount)
@@ -203,7 +206,8 @@ def dynamicData(request):
     product_name = request.GET.get("product_id")
     product_sale_reference_name = Product.objects.get(product_name=product_name)
     stock_reference_name = Stock.objects.filter(product_id = product_sale_reference_name.product_id).latest('stock_changed_date')
-    
+    print(stock_reference_name.stock_amount)
+    print(product_sale_reference_name.unit_id)
     if product_sale_reference_name:
         return JsonResponse({
             "quantity": stock_reference_name.stock_amount,
