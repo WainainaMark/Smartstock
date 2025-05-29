@@ -112,12 +112,7 @@ $(document).ready(function () {
         .then((response) => response.json())
         .then((data) => {
           console.log("Success:", data);
-          fetch("home/refreshProducts", {
-            method: "POST",
-          }).then((data) => {
-            const product = document.createElement(div);
-            location.reload();
-          });
+          location.reload();
         })
         .catch((error) => {
           console.error("Error:", error);
