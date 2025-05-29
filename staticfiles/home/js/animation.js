@@ -1,7 +1,7 @@
 $("document").ready(function(){
     $("#productAddCloseIcon").click(function () { 
 
-        $("#productAddForm").css("transition", "transform 0.5s ease-in-out"); 
+        
         $("#productAddForm").css("transform", "translateY(-20px)");
         setTimeout(() => {
             $("#productAddForm").css("transform", "translateY(120%)");
@@ -67,4 +67,6 @@ $("document").ready(function(){
         })
         
     })
+
+    
 })

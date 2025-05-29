@@ -8,7 +8,6 @@ from django.contrib.auth.decorators import login_required
 from backend.utils import learn, insertData
 
 # Create your views here.
-@login_required
 def homepage(request):
     if request.method == 'POST':
         try:
@@ -219,7 +218,6 @@ def dynamicData(request):
 
 def modelLearn(request):
     product_name = request.POST.get("product")
-    print(product_name)
     result = learn(product_name)
     
     return JsonResponse(result)

@@ -22,6 +22,8 @@ document.addEventListener("DOMContentLoaded", function () {
       loader.style.display = "block";
     });
   });
+});
+
 
 
 function updateClock() {
@@ -72,8 +74,8 @@ productAddToggles.forEach((toggle, index) => {
     setTimeout(()=>{
       productAddContainer.style.opacity = "1";
     }, 500)
-    console.log('Clicked')
   });
+  console.log('Clicked')
 });
 
 choices.forEach((choice, index) => {
@@ -257,5 +259,3 @@ homeContainer.addEventListener("click", () => {
     reportBox.classList.remove("full");
   });
 });
-
-})

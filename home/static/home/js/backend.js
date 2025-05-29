@@ -9,7 +9,7 @@ $(document).ready(function () {
       formData.append("product", productId);
       formData.append("csrfmiddlewaretoken", csrf_token);
 
-      fetch("home/productFetch", {
+      fetch("productFetch", {
         method: "POST",
         body: formData,
       })
@@ -67,22 +67,27 @@ $(document).ready(function () {
   });
 
   $("#MachineLearnBtn").click(function () {
+    $(".loader").fadeIn()
     let productId = $("#productLearningName").val();
     console.log(productId)
     formData = new FormData();
     formData.append("product", productId);
     formData.append("csrfmiddlewaretoken", csrf_token);
 
-    fetch("home/learn", {
+    fetch("learn", {
       method: "POST",
       body: formData
     })
       .then((response) => response.json())
       .then((data) => {
+        $(".loader").fadeOut()
+
         $("#machineResponse").html(`
           <span>📦 Product: ${data.product}</span>
-          <p>🧮 Next Predicted Sales: ${data.total_predicted}</p>
+          <p>🧮 Next Predicted Sales: ${data.forecast[0].toFixed(2)}</p>
+          <p id="AIresponse">🧮 Our systems says : ${data.response}</p>
         `);
+
       });
   });
 
@@ -100,14 +105,14 @@ $(document).ready(function () {
       formData.append("productStock", $("#productInitialQuantity").val());
       formData.append("csrfmiddlewaretoken", csrf_token);
 
-      fetch("home/addProduct", {
+      fetch("addProduct", {
         method: "POST",
         body: formData,
       })
         .then((response) => response.json())
         .then((data) => {
           console.log("Success:", data);
-          fetch("home/refreshProducts", {
+          fetch("refreshProducts", {
             method: "POST",
           }).then((data) => {
             const product = document.createElement(div);

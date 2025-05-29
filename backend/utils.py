@@ -4,7 +4,11 @@ from django.db import models
 from sklearn.linear_model import LinearRegression
 from sklearn.model_selection import train_test_split
 import numpy as np
+import google.generativeai as genai
 
+# pyright: reportPrivateImportUsage=false
+genai.configure(api_key="AIzaSyBs14-UX4cSwNuCT-XeB9bRmQLgyx05uHQ")
+AImodel = genai.GenerativeModel("gemini-2.0-flash")
 def insertData(product_name: str):
     """
     The machine learns about the previous transactions of the object
@@ -96,15 +100,19 @@ def learn(product_name: str):
 
         print(f"📈 Next 3 predicted SALE amounts: {forecast}")
         print(f"🧮 Total predicted demand (next 3): {total_predicted:.2f}")
+        response = AImodel.generate_content(f"Give me advice based on the predicted sale trend of the product {product_name} in one sentence: The predicted forecast data is like this {forecast.tolist()}")
 
         return {
             'product': product_name,
             'forecast': forecast.tolist(),
-            'total_predicted': int(total_predicted)
+            'total_predicted': int(total_predicted),
+            'response': response.text
         }
 
     except Product.DoesNotExist:
         print(f"❌ Product '{product_name}' not found!")
         return None
+
+
 # sales = SalesItem.objects.all().values()
 # df = pd.DataFrame(sales)

@@ -22,8 +22,6 @@ document.addEventListener("DOMContentLoaded", function () {
       loader.style.display = "block";
     });
   });
-});
-
 
 
 function updateClock() {
@@ -63,19 +61,22 @@ const displayTitle = document.getElementById("displayTitle");
 const orderDisplayTitle = document.getElementById("displayTitle1");
 const informativeTitle = document.getElementById("informativeTitle");
 const orderinformativeTitle = document.getElementById("informativeTitle1");
-
+const productOrder =document.getElementById('productOrderName')
 productCloseIcon.addEventListener("click", () => {
   setTimeout(() => (productAddContainer.style.display = "none"), 1000);
 });
 
-productAddToggles.forEach((toggle, index) => {
-  toggle.addEventListener("click", () => {
-    productAddContainer.style.display = "flex";
-    setTimeout(()=>{
-      productAddContainer.style.opacity = "1";
-
-    }, 500)
-  });
+productOrder.addEventListener('click', () => {
+  const value = productOrder.value;
+  if(value == 'Add a product'){
+    productAddContainer.style.display = 'flex'
+    productAddContainer.style.opacity = 1
+    $("#productAddForm").css("transition", "transform 0.5s ease-in-out");
+        $("#productAddForm").css("transform", "translateY(120%)")
+        setTimeout(() => {
+            $("#productAddForm").css("transform", "translateY(0)");
+        }, 600);
+  }
 });
 
 choices.forEach((choice, index) => {
@@ -259,3 +260,5 @@ homeContainer.addEventListener("click", () => {
     reportBox.classList.remove("full");
   });
 });
+
+})
