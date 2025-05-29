@@ -40,7 +40,7 @@ def insertData(product_name: str):
     # Add a time index (assuming data is in chronological order)
     df['time_index'] = range(1, len(df) + 1)
 
-    df.to_csv('transactions.csv')
+    df.to_csv(f'{product_name}_transactions.csv')
     print("CSV saved using pandas! File: transactions.csv ✅")
 
 def learn(product_name: str):
@@ -64,7 +64,7 @@ def learn(product_name: str):
         df = pd.DataFrame(data)
 
         # Save CSV
-        filename = 'transactions.csv'
+        filename = f'{product_name}_transactions.csv'
         df.to_csv(filename, index=False)
         print(f"💾 Saved transactions to: {filename}")
 
