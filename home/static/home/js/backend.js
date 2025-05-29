@@ -9,7 +9,7 @@ $(document).ready(function () {
       formData.append("product", productId);
       formData.append("csrfmiddlewaretoken", csrf_token);
 
-      fetch("productFetch", {
+      fetch("home/productFetch", {
         method: "POST",
         body: formData,
       })
@@ -74,7 +74,7 @@ $(document).ready(function () {
     formData.append("product", productId);
     formData.append("csrfmiddlewaretoken", csrf_token);
 
-    fetch("learn", {
+    fetch("home/learn", {
       method: "POST",
       body: formData
     })
@@ -105,18 +105,18 @@ $(document).ready(function () {
       formData.append("productStock", $("#productInitialQuantity").val());
       formData.append("csrfmiddlewaretoken", csrf_token);
 
-      fetch("addProduct", {
+      fetch("home/addProduct", {
         method: "POST",
         body: formData,
       })
         .then((response) => response.json())
         .then((data) => {
           console.log("Success:", data);
-          fetch("refreshProducts", {
+          fetch("home/refreshProducts", {
             method: "POST",
           }).then((data) => {
-            location.reload();
             const product = document.createElement(div);
+            location.reload();
           });
         })
         .catch((error) => {
