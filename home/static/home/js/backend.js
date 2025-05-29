@@ -115,6 +115,7 @@ $(document).ready(function () {
           fetch("refreshProducts", {
             method: "POST",
           }).then((data) => {
+            location.reload();
             const product = document.createElement(div);
           });
         })
