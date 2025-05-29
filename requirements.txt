@@ -3,3 +3,8 @@ gunicorn
 psycopg2-binary  # If using PostgreSQL (Render’s default DB)
 whitenoise  # For serving static files
 requests
+google-generativeai
+scikit-learn>=1.3.0  # Latest stable version
+numpy>=1.24.0        # Required by scikit-learn
+scipy>=1.10.0        # Required for some sklearn algorithms
+pandas>=2.0.0        # Useful for data handling
